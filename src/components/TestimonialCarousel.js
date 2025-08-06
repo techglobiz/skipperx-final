@@ -114,6 +114,8 @@ const TestimonialCarousel = () => {
                   alt={item.company}
                   className="company-logoo"
                   style={item.logoSize}
+                  width={170}
+                  height={65}
                 />
                 <p className="quote">“{item.quote}”</p>
                 <p className="name">{item.name}</p>
@@ -125,6 +127,8 @@ const TestimonialCarousel = () => {
                   alt={item.name}
                   className="person-img"
                   style={item.imageSize}
+                  width={300}
+                  height={350}
                 />
               </div>
             </div>
@@ -148,10 +152,10 @@ const TestimonialCarousel = () => {
 
       <div className="trust-foter">
         <div className="avatars">
-          <Image src={navya} alt="avatar" />
-          <Image src={hari} alt="avatar" />
-          <Image src={sakshi} alt="avatar" />
-          <Image src={sai} alt="avatar" />
+          <Image src={navya} alt="avatar" width={50} height={50} />
+          <Image src={hari} alt="avatar" width={50} height={50} />
+          <Image src={sakshi} alt="avatar" width={50} height={50} />
+          <Image src={sai} alt="avatar" width={50} height={50} />
           <span>Be one of them</span>
         </div>
         <button className="avabtn">Apply Now</button>

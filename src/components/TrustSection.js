@@ -29,7 +29,14 @@ const TrustSection = () => {
       <h4 className="accredited-text">We are <em>accredited</em> by</h4>
       <div className="logo-row">
         {partners.map((logo, idx) => (
-          <Image key={idx} src={logo} alt="logo" className="partner-logo" />
+          <Image 
+            key={idx} 
+            src={logo} 
+            alt="logo" 
+            className="partner-logo"
+            width={120}
+            height={60}
+          />
         ))}
       </div>
 
@@ -50,12 +57,19 @@ const TrustSection = () => {
             <div className="people-grid">
               {[...Array(10)].flatMap(() => people).map((person, i) => (
                 <div key={i} className="person-card">
-                  <Image src={`/assets/${person.img}`} alt={person.name} />
+                  <Image 
+                    src={`/assets/${person.img}`} 
+                    alt={person.name} 
+                    width={100}
+                    height={100}
+                  />
                   <p className='size'>{person.name}</p>
                   <Image
                     src={`/assets/${person.logo}`}
                     alt="Company Logo"
                     className="company-logo"
+                    width={80}
+                    height={40}
                   />
                 </div>
               ))}

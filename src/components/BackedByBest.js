@@ -94,7 +94,7 @@ const BackedByBest = () => {
       if (!isHovered.current) {
         next();
       }
-    }, 3500);
+    }, 2500);
   };
 
   const stopAutoSlide = () => {
@@ -127,10 +127,18 @@ const BackedByBest = () => {
 
       <div
         className="best-carousel-wrapper"
-        onMouseEnter={pauseAutoSlide}
-        onMouseLeave={resumeAutoSlide}
+        //onMouseEnter={pauseAutoSlide}
+        //onMouseLeave={resumeAutoSlide}
       >
         <button className="best-arrow left" onClick={prev}>&#10094;</button>
+        <div
+          className="best-carousel-track"
+          style={{
+            transform: `translateX(-${Math.min(index, fullSlides.length - 1) * 100}%)`,
+            transition: transition ? 'transform 0.6s ease' : 'none',
+          }}
+          onTransitionEnd={handleTransitionEnd}
+        >
           {fullSlides.map((t, i) => (
             <div className="best-slide" key={i}>
               <div className="best-content">
@@ -164,7 +172,9 @@ const BackedByBest = () => {
         </div>
         <button className="best-arrow right" onClick={next}>&#10095;</button>
       </div>
+    </div>
   );
-}
+};
+
 
 export default BackedByBest;
