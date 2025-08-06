@@ -1,7 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
 
 const ArvrJoinForm = () => {
   const [formData, setFormData] = useState({
@@ -37,7 +35,7 @@ const ArvrJoinForm = () => {
   };
 
   const validateForm = () => {
-    const errors: any = {};
+    const errors: Record<string, string> = {};
     
     if (!formData.firstName.trim()) {
       errors.firstName = 'First name is required';

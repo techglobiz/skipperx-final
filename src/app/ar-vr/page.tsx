@@ -1,24 +1,23 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import ArvrJoinForm from '@/components/Sidebar';
+import { useCallback, useEffect, useState } from 'react';
 import './page.css';
-import bgImage from '/public/assets/dronebg.png';
-import bulbIcon from '/public/assets/holding-bulb.png';
-import harish from '/public/assets/harisha.jpg';
-import sai from '/public/assets/sai.jpg';
-import hari from '/public/assets/harih.jpg';
-import sakshi from '/public/assets/saksh.png';
-import asishIcon from '/public/assets/droneashish.png';
 import certificateDisplay from "/public/assets/dcerti.png";
 import brochureImage from "/public/assets/drone-brochure.png";
-import soumya from "/public/assets/soumya.png";
-import suresh from "/public/assets/suresh.png";
+import asishIcon from '/public/assets/droneashish.png';
+import bgImage from '/public/assets/dronebg.png';
+import eightseven from "/public/assets/eight-seven.png";
+import faqarrow from "/public/assets/faqarrow.png";
+import hari from '/public/assets/harih.jpg';
+import harish from '/public/assets/harisha.jpg';
+import bulbIcon from '/public/assets/holding-bulb.png';
 import nineeight from "/public/assets/nine-eight.png";
 import nineseven from "/public/assets/nine-seven.png";
-import eightseven from "/public/assets/eight-seven.png";
+import sai from '/public/assets/sai.jpg';
+import sakshi from '/public/assets/saksh.png';
+import soumya from "/public/assets/soumya.png";
+import suresh from "/public/assets/suresh.png";
 import vishal from "/public/assets/vishal.png";
-import faqarrow from "/public/assets/faqarrow.png";
-import ArvrJoinForm from '@/components/Sidebar';
 
 import Image from 'next/image';
 
@@ -34,7 +33,7 @@ const modules = [
 ];
 
 const ARVRPage = () => {
-  const router = useRouter();
+  // const router = useRouter(); // Removed unused variable
   const scrollItems = [
     "Game Development",
     "3D Modeling",
@@ -68,7 +67,7 @@ const ARVRPage = () => {
     }
     };
   
-    const calculateTimeLeft = (deadline: number) => {
+    const calculateTimeLeft = useCallback((deadline: number) => {
       const now = new Date().getTime();
       const difference = deadline - now;
   
@@ -89,7 +88,7 @@ const ARVRPage = () => {
         Minutes: String(minutes).padStart(2, '0'),
         Seconds: String(seconds).padStart(2, '0'),
       };
-    };
+    }, []);
   
     const [timer, setTimer] = useState({
       Days: '00',
@@ -99,7 +98,7 @@ const ARVRPage = () => {
     });
   
     useEffect(() => {
-      let deadline = getNextDeadline();
+      const deadline = getNextDeadline();
   
       const interval = setInterval(() => {
         const timeLeft = calculateTimeLeft(deadline);
@@ -107,7 +106,7 @@ const ARVRPage = () => {
       }, 1000);
   
       return () => clearInterval(interval);
-    }, []);
+    }, [calculateTimeLeft]); // Added missing dependency
 
   return (
     <>
@@ -205,11 +204,11 @@ const ARVRPage = () => {
             </h2>
 
             <p className="arvr-info-para">
-              Skipper's AR/VR Engineering Program helps you master immersive technology development, 
+              Skipper&apos;s AR/VR Engineering Program helps you master immersive technology development, 
               3D modeling, spatial computing, and interactive experience design.
             </p>
             <p className="arvr-info-para1">
-              You'll gain hands-on experience in Unity, ARCore, ARKit, and VR frameworks,
+              You&apos;ll gain hands-on experience in Unity, ARCore, ARKit, and VR frameworks,
               preparing you for careers in gaming, entertainment, education, and enterprise solutions.
             </p>
 
@@ -225,9 +224,9 @@ const ARVRPage = () => {
               <div className="arvr-testimonial-quote">
                 <p>
                   <em>
-                    "The AR/VR Engineering Program at Skipper was transformative. The hands-on approach to building immersive experiences gave me confidence in emerging technologies.
+                    &quot;The AR/VR Engineering Program at Skipper was transformative. The hands-on approach to building immersive experiences gave me confidence in emerging technologies.
                     <br /><br />
-                    I now work on cutting-edge AR applications and feel well-prepared for the future of technology."
+                    I now work on cutting-edge AR applications and feel well-prepared for the future of technology.&quot;
                   </em>
                 </p>
               </div>
@@ -465,7 +464,7 @@ const ARVRPage = () => {
                   <h2><span className="dronehighlight">Skippers</span> of the Month</h2>
                   <hr className="faq-rightt"/>
                 </div>
-                <p className="faq-subtext">Insights from those who’ve walked the path you're about to take.</p>
+                <p className="faq-subtext">Insights from those who&apos;ve walked the path you&apos;re about to take.</p>
       
               <div className="skippers-podium-wrapper">
                 

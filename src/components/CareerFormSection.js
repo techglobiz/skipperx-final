@@ -1,4 +1,3 @@
-import React from "react";
 import "./CareerFormSection.css"; // Assuming you have a CSS file for styling
 
 const CareerFormSection = () => {
@@ -10,7 +9,7 @@ const CareerFormSection = () => {
         <div className="righ" />
       </div>
       <p className="subtitle">
-        Insights from those who’ve walked the path you're about to take.
+        Insights from those who&apos;ve walked the path you&apos;re about to take.
       </p>
 
       <form className="career-form">

@@ -1,5 +1,4 @@
 'use client';
-import React from 'react';
 import Image from 'next/image';
 import './About.css';
 
@@ -79,7 +78,7 @@ const About = () => {
               the skills the world is hiring for—across tech, business, and 
               innovation. 
             </p>
-            <p> We're here to help you upgrade your career, break into 
+            <p> We&apos;re here to help you upgrade your career, break into 
               new roles, or build something of your own.
             </p>
             <p>
@@ -95,15 +94,15 @@ const About = () => {
           <div className="mv-content2">
             <div className="mv-heading">VISION</div>
             <p>
-              At SkipperX, we're building the most powerful career launchpad for 
+              At SkipperX, we&apos;re building the most powerful career launchpad for 
               ambitious professionals.
             </p>
             <p>
               Our vision is to create a new standard of upskilling—where learners 
-              don't just learn, they transform.
+              don&apos;t just learn, they transform.
             </p>
             <p>
-              Whether it's landing top roles, switching industries, or launching 
+              Whether it&apos;s landing top roles, switching industries, or launching 
               startups, we exist to help people take the leap with skills that 
               actually move the needle.
             </p>
@@ -118,7 +117,7 @@ const About = () => {
           <hr className="gallery-line2" />
         </div>
         <p className="subtitle">
-          Insights from those who've walked the path you're about to take.
+          Insights from those who&apos;ve walked the path you&apos;re about to take.
         </p>
 
         <div className="people-grid1">
@@ -143,7 +142,7 @@ const About = () => {
       <div className="skipperx-gallery">
         <div className="skipperx-gallery-title">
           <hr className="gallery-line1" />
-          <h2 className="gallery-heading">Here's what SkipperX is all about</h2>
+          <h2 className="gallery-heading">Here&apos;s what SkipperX is all about</h2>
           <hr className="gallery-line2" />
         </div>
         <div className="skipperx-gallery-images">

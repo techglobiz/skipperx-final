@@ -1,11 +1,10 @@
 'use client';
-import React from 'react';
 import Image from 'next/image';
-import skillIndia from '/public/assets/skill-india.png';
-import nsdc from '/public/assets/nsdc.png';
-import startupIndia from '/public/assets/startup-india.png';
-import googleEd from '/public/assets/google-edu.png';
 import './TrustSection.css'; // Assuming you have a CSS file for styles
+import googleEd from '/public/assets/google-edu.png';
+import nsdc from '/public/assets/nsdc.png';
+import skillIndia from '/public/assets/skill-india.png';
+import startupIndia from '/public/assets/startup-india.png';
 
 const partners = [skillIndia, nsdc, startupIndia, googleEd];
   
@@ -46,32 +45,26 @@ const TrustSection = () => {
           <div><strong>🔁 42%</strong><br />Career Switchers</div>
         </div>
 
-
         <div className="people-scroll-wrapper">
-            <div className="scroll-track">
-                <div className="people-grid">
-                    {[...Array(10)].flatMap(() => people).map((person, i) => (
-                         <div key={i} className="person-card">
-                             <Image src={require(`/public/assets/${person.img}`)} alt={person.name} />
-                             <p className='size'>{person.name}</p>
-                             <Image
-                                src={require(`/public/assets/${person.logo}`)}
-                                alt="Company Logo"
-                                className="company-logo"
-                              />
-                        </div>
-                        ))}
+          <div className="scroll-track">
+            <div className="people-grid">
+              {[...Array(10)].flatMap(() => people).map((person, i) => (
+                <div key={i} className="person-card">
+                  <Image src={`/assets/${person.img}`} alt={person.name} />
+                  <p className='size'>{person.name}</p>
+                  <Image
+                    src={`/assets/${person.logo}`}
+                    alt="Company Logo"
+                    className="company-logo"
+                  />
                 </div>
+              ))}
             </div>
+          </div>
         </div>
-
       </div>
     </div>
   );
 };
-
-
-
-
 
 export default TrustSection;

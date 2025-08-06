@@ -1,6 +1,6 @@
 import { generateMetadata as generatePageMetadata } from '@/lib/metadata';
-import Link from 'next/link';
-import './RefundPolicy.css'; 
+// ...existing code...
+import './RefundPolicy.css';
 
 // Generate metadata for this page
 export async function generateMetadata() {

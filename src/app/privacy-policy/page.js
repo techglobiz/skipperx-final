@@ -1,11 +1,7 @@
-import { generateMetadata as generatePageMetadata, pageMetadata } from '@/lib/metadata';
-import Link from 'next/link';
-import './PrivacyPolicy.css'; 
+// ...existing code...
+import './PrivacyPolicy.css';
 
-// Generate metadata for this page
-export async function generateMetadata() {
-  return generatePageMetadata('privacy-policy');
-}
+// ...existing code...
 
 export default function PrivacyPolicy() {
 

@@ -1,9 +1,8 @@
-import React from 'react';
-import Link from 'next/link';
+// ...existing code...
 import Image from 'next/image';
-import logo from '/public/assets/skipper-logo.png';  // Adjust the path as necessary
-import { FaLinkedin, FaFacebook, FaInstagram } from 'react-icons/fa'; 
-import './Footer.css';  // Assuming you have a CSS file for styling
+import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import './Footer.css'; // Assuming you have a CSS file for styling
+import logo from '/public/assets/skipper-logo.png'; // Adjust the path as necessary
 
 const Footer = () => {
   return (

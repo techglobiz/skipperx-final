@@ -1,5 +1,5 @@
 import { generateMetadata as generatePageMetadata } from '@/lib/metadata';
-import Link from 'next/link';
+// ...existing code...
 import './termsandconditions.css';
 
 // Generate metadata for this page

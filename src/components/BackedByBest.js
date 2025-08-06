@@ -1,15 +1,15 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from 'react';
-import isroLogo from '/public/assets/isro-logo.png';
-import amanImage from '/public/assets/aman-gupta.png';
-import zah from '/public/assets/zah.png';
-import zahc from '/public/assets/zahc.png';
-import ramya from '/public/assets/ramyaa.png';
+import Image from "next/image";
+import { useEffect, useRef, useState } from 'react';
+import './BackedByBest.css'; // Assuming you have a CSS file for styling
 import akhil from '/public/assets/akhil.png';
 import akhilc from '/public/assets/akhilc.png';
-import './BackedByBest.css'; // Assuming you have a CSS file for styling
-import Image from "next/image";
+import amanImage from '/public/assets/aman-gupta.png';
+import isroLogo from '/public/assets/isro-logo.png';
+import ramya from '/public/assets/ramyaa.png';
+import zah from '/public/assets/zah.png';
+import zahc from '/public/assets/zahc.png';
 
 
 const bestTestimonials = [
@@ -131,14 +131,6 @@ const BackedByBest = () => {
         onMouseLeave={resumeAutoSlide}
       >
         <button className="best-arrow left" onClick={prev}>&#10094;</button>
-        <div
-          className="best-carousel-track"
-          style={{
-            transform: `translateX(-${Math.min(index, fullSlides.length - 1) * 100}%)`,
-            transition: transition ? 'transform 0.6s ease' : 'none',
-          }}
-          onTransitionEnd={handleTransitionEnd}
-        >
           {fullSlides.map((t, i) => (
             <div className="best-slide" key={i}>
               <div className="best-content">
@@ -172,8 +164,7 @@ const BackedByBest = () => {
         </div>
         <button className="best-arrow right" onClick={next}>&#10095;</button>
       </div>
-    </div>
   );
-};
+}
 
 export default BackedByBest;

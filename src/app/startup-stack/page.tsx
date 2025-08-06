@@ -1,63 +1,49 @@
 'use client';
-import React, { useState } from 'react';
+import ArvrJoinForm from '@/components/Sidebar';
 import Image from "next/image";
-import Link from 'next/link';
-import bgImage from '/public/assets/dronebg.png';
-import bulbIcon from '/public/assets/holding-bulb.png';
-import stackicon from '/public/assets/stackincon.png';
-import statckimg from '/public/assets/statckup.png';
+import { useState } from 'react';
 import './stack.css'; // Assuming you have a CSS file for styles
+import css from '/public/assets/css.png';
+import brochureImage from "/public/assets/drone-brochure.png";
+import eightseven from "/public/assets/eight-seven.png";
+import faqarrow from "/public/assets/faqarrow.png";
+import googleEd from '/public/assets/google-edu.png';
+import hari from '/public/assets/harih.jpg';
+import harish from '/public/assets/harisha.jpg';
+import bulbIcon from '/public/assets/holding-bulb.png';
 import nineeight from "/public/assets/nine-eight.png";
 import nineseven from "/public/assets/nine-seven.png";
-import eightseven from "/public/assets/eight-seven.png";
-import roborreviewlogo from "/public/assets/robot-review-logo.png";
-import ashish from '/public/assets/robot-review.png';
-import faqarrow from "/public/assets/faqarrow.png";
-import sai from '/public/assets/sai.jpg';
-import hari from '/public/assets/harih.jpg';
-import sakshi from '/public/assets/saksh.png';
-import certificateDisplay from "/public/assets/dcerti.png";
-import harish from '/public/assets/harisha.jpg';
-import skillIndia from '/public/assets/skill-india.png';
-import nsdc from '/public/assets/nsdc.png';
-import startupIndia from '/public/assets/startup-india.png';
-import googleEd from '/public/assets/google-edu.png';
-import brochureImage from "/public/assets/drone-brochure.png";
-import css from '/public/assets/css.png';
 import node from '/public/assets/node.png';
+import nsdc from '/public/assets/nsdc.png';
 import ricon from '/public/assets/ricon.png';
-import ArvrJoinForm from '@/components/Sidebar';
-import harsh from '/public/assets/stack/harsh.png';
-import ramya_shrivastav from '/public/assets/stack/ramya_shrivastav.png';
-import anuj from '/public/assets/stack/anuj.png';
+import roborreviewlogo from "/public/assets/robot-review-logo.png";
+import sai from '/public/assets/sai.jpg';
+import sakshi from '/public/assets/saksh.png';
+import skillIndia from '/public/assets/skill-india.png';
 import pratyush from '/public/assets/stack/akhil.png';
-import heena from '/public/assets/stack/heena.png';
-import zaheen from '/public/assets/stack/zaheen.png';
-import jayasur from '/public/assets/stack/jayasurya.png';
-import debasish from '/public/assets/stack/debasish.png';
-import nehasawal from '/public/assets/stack/neha.png';
-import corizo from '/public/assets/stack/corizo.png';
-import isro from '/public/assets/stack/isro.png';                
-import reddy from '/public/assets/stack/reddy.png';
-import garodia from '/public/assets/stack/garodia.png';
-import kwe from '/public/assets/stack/kwe.png';
-import jsl from '/public/assets/stack/jsl.png';
+import anuj from '/public/assets/stack/anuj.png';
 import apex from '/public/assets/stack/apex.png';
+import corizo from '/public/assets/stack/corizo.png';
+import debasish from '/public/assets/stack/debasish.png';
+import garodia from '/public/assets/stack/garodia.png';
+import harsh from '/public/assets/stack/harsh.png';
+import heena from '/public/assets/stack/heena.png';
+import isro from '/public/assets/stack/isro.png';
+import jayasur from '/public/assets/stack/jayasurya.png';
+import jsl from '/public/assets/stack/jsl.png';
+import kwe from '/public/assets/stack/kwe.png';
+import nehasawal from '/public/assets/stack/neha.png';
+import ramya_shrivastav from '/public/assets/stack/ramya_shrivastav.png';
+import reddy from '/public/assets/stack/reddy.png';
+import zaheen from '/public/assets/stack/zaheen.png';
+import startupIndia from '/public/assets/startup-india.png';
+import statckimg from '/public/assets/statckup.png';
 
 
 
 
 
-const modules = [
-  { title: "Introduction to Robotics & Microcontroller Basics", content: "Learn the basics of flight using paper planes and aerodynamics." },
-  { title: "Microcontroller Mastery Continued & Electronics Fundamentals", content: "Understand drone parts, types, and functionality." },
-  { title: "Bluetooth Communication & Sensor Basics", content: "Step-by-step drone assembly and flight tests." },
-  { title: "Robot Assembly & Bluetooth Control", content: "Overview of sensors used in drones." },
-  { title: "Advanced Sensing and Data Interpretation", content: "Dive deep into orientation and altitude sensors." },
-  { title: "Obstacle Avoidance & Line Following Techniques", content: "Learn the software framework that controls drones." },
-  { title: "Mobile App Development for Robot Control", content: "Build and fly your own drone in the final week." },
-  { title: "Final Integration and Project Presentations", content: "Build and fly your own drone in the final week." }
-];
+// ...existing code...
 
 
 const partners = [skillIndia, nsdc, startupIndia, googleEd, css, node];
@@ -230,8 +216,6 @@ export default function StartupStackPage() {
                           Jayasurya Valusa<br />
                            <span>Developer</span>
                           <Image src={kwe}  className="robot-review-img" alt="KWE Logo" />
-                        </div>
-                      </div>
         
                       <div className="robot-testimonial-person">
                         <Image src={debasish} alt="Debashish Senapati" />
@@ -240,12 +224,10 @@ export default function StartupStackPage() {
                           <Image src={jsl}  className="robot-review-img" alt="JSL Logo" />
                         </div>
                       </div>
-                      <div className="robot-testimonial-person">
                         <Image src={nehasawal} alt="Ashish Singhal" />
                         <div className="robot-testimonial-name">
                           Neha Sawal <br /> <span>Legal writer & Editor</span>
                           <Image src={apex}  className="robot-review-img" alt="Apex Logo" />
-                        </div>
                       </div>
                       
                     </div>
@@ -442,16 +424,10 @@ export default function StartupStackPage() {
                       ))}
                     </div>
                   </div>
-          
-
-
-
-
-        
+                </div>
+              </div>
             </div>
           </div>
-      
-                                          
     </>
   );
 }

@@ -1,12 +1,12 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
 import Image from 'next/image';
+import { useEffect, useRef, useState } from "react";
+import './TestimonialCarousel.css'; // Assuming you have a CSS file for styles
 import testimonials from "./testimonialData";
+import hari from '/public/assets/harih.jpg';
 import navya from '/public/assets/navya.png';
 import sai from '/public/assets/sai.jpg';
-import hari from '/public/assets/harih.jpg';
 import sakshi from '/public/assets/saksh.png';
-import './TestimonialCarousel.css'; // Assuming you have a CSS file for styles
 
 
 const TestimonialCarousel = () => {
@@ -110,7 +110,7 @@ const TestimonialCarousel = () => {
             <div className="testimonial-card" key={i}>
               <div className="testimonial-left">
                 <Image
-                  src={require(`/public/assets/${item.logo}`)}
+                  src={`/assets/${item.logo}`}
                   alt={item.company}
                   className="company-logoo"
                   style={item.logoSize}
@@ -121,7 +121,7 @@ const TestimonialCarousel = () => {
               </div>
               <div className="testimonial-right">
                 <Image
-                  src={require(`/public/assets/${item.image}`)}
+                  src={`/assets/${item.image}`}
                   alt={item.name}
                   className="person-img"
                   style={item.imageSize}
