@@ -349,6 +349,8 @@
   .footer-mobile-newsletter {
     display: block;
     margin-top: 30px;
+    padding: 0px 20px 0px 0px;
+        width: 85%;
   }
   
   .footer-mobile-social {
@@ -400,17 +402,19 @@
   }
   
   .footer-mobile-menu .footer-columns-group {
-    flex-direction: column;
+    flex-direction: inherit;
     gap: 20px;
     align-items: center;
   }
   
   .footer-column {
-    text-align: center;
+    text-align: left;
   }
   
   .footer-description {
     margin-top: 20px;
+    padding: 0px 92px 0px 20px;
+        text-align: left;
   }
 }
 @media (max-width: 768px) {

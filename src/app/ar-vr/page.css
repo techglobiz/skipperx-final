@@ -232,20 +232,6 @@
     bottom: auto;
     margin: 40px auto 0;
   }
-
-      .drone-stat-section-mobile {
-        display: flex !important;
-        padding: 50px 20px;
-    }
-
-        .hub-card-mobile {
-        margin: 0px 15px 0px 0px !important;
-    }
-
-        .hub-card_2-mobile {
-        margin: 0px 15px 0px 0px !important;
-    }
-
 }
 
 
@@ -262,30 +248,18 @@
   }
 
   .arvr-cta-buttons {
-    flex-direction: inherit;
+    flex-direction: row;
     align-items: center;
     margin: 29px 0 36px 0;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   .arvr-outline-btn {
     /* width: 80%; */
     margin-bottom: 10px;
+    flex: 0 0 auto;
   }
-
-
-  .drone-stat-section-mobile {
-        display: flex !important;
-        padding: 50px 20px;
-    }
-
-        .hub-card-mobile {
-        margin: 0px 15px 0px 0px;
-    }
-
-        .hub-card_2-mobile {
-        margin: 0px 15px 0px 0px;
-    }
-  
 
   .arvr-engineering-section {
     margin-left: auto;
@@ -753,12 +727,17 @@
 
   .arvr-cta-buttons {
     gap: 5px;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   .arvr-outline-btn {
-    width: 90%;
+    width: auto;
     padding: 8px 15px;
     font-size: 14px;
+    min-width: 80px;
+    flex: 0 0 auto;
   }
 
   .arvr-start-btn {
@@ -845,6 +824,36 @@
 
 
 /* Media queries for responsive visibility */
+@media screen and (max-width: 768px) {
+    .desktop-only {
+        display: none !important;
+    }
+    
+    .mobile-only {
+        display: flex !important;
+    }
+    
+    .drone-stat-section-mobile {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        gap: 15px !important;
+        padding: 50px 20px !important;
+        flex-wrap: nowrap !important;
+    }
+    
+    .hub-card-mobile,
+    .hub-card_2-mobile,
+    .hub-card_3-mobile {
+        flex: 1 !important;
+        margin: 0 !important;
+        min-width: 0 !important;
+    }
+    .offer-btn{
+      width: 200px !important;
+    }
+}
+
 @media screen and (min-width: 769px) {
     .mobile-only {
         display: none !important;

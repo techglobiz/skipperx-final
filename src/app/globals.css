@@ -3231,3 +3231,18 @@ body, html {
 }
 
 
+@media (max-width: 767px) {
+  .skippers-section {  
+    padding: 64px 10px 30px !important;    
+  }
+
+  .drone-pricing-btn {    
+    width: 280px !important;
+}
+
+.offer-btn {    
+    width: 300px !important;    
+}
+
+
+}
