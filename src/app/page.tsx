@@ -10,46 +10,29 @@ import TrustSection from "../components/TrustSection";
 import WhyTrustUs from "../components/WhyTrustUs";
 
 export default function Home() {
+  // --- Original return below ---
+  // return (
+  //   <>
+  //     <Hero />
+  //     <TrustSection />
+  //     <TestimonialCarousel />
+  //     <EngineeringPrograms />  
+  //     <SuperStack />
+  //     <CareerFormSection />
+  //     <SkippersAdvantage />
+  //     <Circle />
+  //     <LaunchSection />
+  //     <BackedByBest />
+  //     <WhyTrustUs />
+  //   </>
+  // );
   return (
-   <>
-      <Hero />
-      <div className="bg-gray-100">      
-        <TrustSection />    
-      
-     
-        <TestimonialCarousel />
-      
-      
-      
-        <EngineeringPrograms />
-      
-      
-     
-        <SuperStack />
-     
-      
-      
-        <CareerFormSection />
-      
-      
-      
-        <SkippersAdvantage />     
-      
-      
-        <Circle />
-        
-      </div>
-      
-       <div className="container mx-auto">
-        <BackedByBest />
-        </div> 
-      
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <WhyTrustUs />
-        </div>
-        
-
-    </>
+    <div className="coming-soon-message">
+      <p>
+        SkipperX is cooking something the internet isn&apos;t ready for.
+      </p>
+      <h3 className="coming-soon-subheading">We&apos;re not late, We&apos;re just loading greatness.</h3>
+    </div>
   );
 }
+

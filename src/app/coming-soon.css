@@ -1,0 +1,36 @@
+.coming-soon-message {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  color: #222;
+  text-align: center;
+  padding: 2rem;
+}
+
+.coming-soon-message p {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+
+.coming-soon-subheading {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #666;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .coming-soon-message {
+    padding: 1rem;
+  }
+  .coming-soon-message p {
+    font-size: 1.2rem;
+  }
+  .coming-soon-subheading {
+    font-size: 0.95rem;
+  }
+}
