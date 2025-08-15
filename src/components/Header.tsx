@@ -78,6 +78,19 @@ const Header = () => {
               <span>Live Classes</span>
             </Link>
 
+            <Link href="/ar-vr" className="mobile-nav-item" onClick={closeMobileMenu}>
+              <span>AR/VR Engineering</span>
+            </Link>
+            <Link href="/drone-engineering" className="mobile-nav-item" onClick={closeMobileMenu}>
+              <span>Drone Engineering</span>
+            </Link>
+            <Link href="/robot-engineering" className="mobile-nav-item" onClick={closeMobileMenu}>
+              <span>Robot Engineering</span>
+            </Link>
+            <Link href="/core-tech" className="mobile-nav-item" onClick={closeMobileMenu}>
+              <span>Core Technology</span>
+            </Link>
+
             {/* Member Section Items */}
             <Link href="/membership-plans" className="mobile-nav-item" onClick={closeMobileMenu}>
               <span>Membership Plans</span>

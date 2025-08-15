@@ -186,7 +186,7 @@ export default function CreatorHubPage() {
                 <div className="robot-testimonial-person">
                   <Image src={ramya_shrivastav} alt="Ramya Shrivastav" />
                   <div className="robot-testimonial-name">
-                    Ramya Shrivastav <br /> <span>Psychology Mentor</span>
+                    Ramya <br /> <span>Psychology</span>
                     <Image
                       src={corizo}
                       className="robot-review-img"
