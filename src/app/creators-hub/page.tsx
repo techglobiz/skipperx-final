@@ -132,13 +132,13 @@ export default function CreatorHubPage() {
                 Advanced <span>Growth</span> Strategy
               </h2>
 
-              <p className="drone-info-para">
+              <p>
                 Build intelligent solutions with Artificial Intelligence and
                 Machine Learning. Bring your ideas to life through design and
                 storytelling. Master the tools and techniques to build brands,
                 engage audiences, and create content that resonates.
               </p>
-              <p className="drone-info-para">
+              <p className="stack-title">
                 <strong>You&apos;ll learn to: </strong>
               </p>
 

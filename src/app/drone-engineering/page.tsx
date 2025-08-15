@@ -19,6 +19,9 @@ import Image from "next/image";
 import "./page.css";
 import asishIcon from "/public/assets/droneashish.png";
 import dronefromob from "/public/assets/stacklogo/dronefromob.png";
+import skipper from '/public/assets/skipper.png';
+
+
 
 const modules = [
   {
@@ -678,7 +681,7 @@ const DroneEngineeringPage = () => {
           </div>
         </div>
 
-        <div className="skippers-section">
+        <div className="skippers-section desktop-only">
           <div className="faq-header">
             <hr className="faq-leftt" />
             <h2>
@@ -723,7 +726,22 @@ const DroneEngineeringPage = () => {
               </div>
             </div>
           </div>
-        </div>
+          </div>
+          
+
+           <div className="skippers-section mobile-only">
+                <div className="faq-header">
+                <hr className="faq-leftt"/>
+                <h2><span className="dronehighlight">Skippers</span> of the Month</h2>
+                <hr className="faq-rightt"/>
+                </div>
+                <p className="faq-subtext">Insights from those who&apos;ve walked the path you&apos;re about to take.</p>
+
+                <div className="skippers-podium-wrapper">
+                <Image src={skipper} alt="Skipper Logo" className="skipper-logo" />                 
+                </div>
+                </div>
+      
 
         <div className="faq-section">
           <div className="faq-header">

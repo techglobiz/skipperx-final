@@ -1054,6 +1054,109 @@ color: #BDC5D1;
     .drone-stat-section-mobile {
         display: flex !important;
     }
+
+    .drone-info-section{
+      padding: 30px 20px !important;
+      background: #1c1c1c;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+  .drone-title {
+    font-size: 1.8rem;
+    padding: 0 10px;
+    line-height: 52px;
+  }
+
+  .partner-logo {
+    max-width: 100px;
+    height: 50px;
+    padding: 0px 0px 0px;
+    
+}
+    .logo-row{
+    gap: 20px;
+    }
+
+  p.stack-title {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    line-height: 30px !important;
+    padding: 10px 0px;
+}
+
+    .arvr-features-list {
+        margin: 15px 0 20px 0;
+        list-style: disc;
+        padding: 0px 20px;        
+        line-height: 20px !important;
+    }
+
+    .arvr-features-list li {
+        font-size: 16px;
+        margin-bottom: 15px;
+        line-height: 25px;
+    
+}
+
+.drone-pricing-card {
+        width: 364px !important;        
+    }
+
+  .drone-description {
+    font-size: 1rem;
+  }
+
+  .drone-cta-buttons {
+    flex-direction: inherit;
+    align-items: center;
+  }
+
+  .drone-outline-btn {
+    /* width: 80%; */
+    margin-bottom: 10px;
+  }
+.drone-outline-btn{
+  margin: 0px 0px !important;
+  padding: 10px 20px !important;
+}
+.drone-info-left p {
+    line-height: 30px;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    font-family: 'Poppins';
+}
+
+.drone-stat-section-mobile {
+        display: flex !important;
+        padding: 50px 20px !important;
+            background: #1c1c1c;
+    }
+
+        .hub-card-mobile {
+        margin: 0px 15px 0px 0px;
+    }
+
+        .hub-card_2-mobile {
+        margin: 0px 15px 0px 0px;
+    }
+  
+}
+
+
+.stack-title{
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  line-height: 30px !important;
+  padding: 10px 0px;
+}
+
+ul.arvr-features-list {
+    line-height: 37px;
+    list-style: disc;
+    font-size: 18px;
 }
 
 /* Mobile version of drone-stat-section */

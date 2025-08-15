@@ -272,6 +272,41 @@ background: linear-gradient(180deg, #1c1c1c 0%, #2b1b1b 100%);
     line-height: 52px;
   }
 
+   .partner-logo {
+    max-width: 100px !important;
+    height: 50px;
+    padding: 0px 0px 0px;
+    
+}
+    .logo-row{
+    gap: 20px;
+    }
+
+  p.stack-title {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    line-height: 30px !important;
+    padding: 10px 0px;
+}
+
+    .arvr-features-list {
+        margin: 15px 0 20px 0;
+        list-style: disc;
+        padding: 0px 20px;        
+        line-height: 20px !important;
+    }
+
+    .arvr-features-list li {
+        font-size: 16px;
+        margin-bottom: 15px;
+        line-height: 25px;
+    
+}
+
+.drone-pricing-card {
+        width: 364px !important;        
+    }
+
   .drone-description {
     font-size: 1rem;
   }
@@ -287,8 +322,16 @@ background: linear-gradient(180deg, #1c1c1c 0%, #2b1b1b 100%);
   }
 .drone-outline-btn{
   margin: 0px 0px !important;
+  padding: 10px 20px !important;
 }
 
+.drone-info-left p {
+    line-height: 30px;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    font-family: 'Poppins';
+}
 
 .drone-stat-section-mobile {
         display: flex !important;
@@ -1076,4 +1119,24 @@ color: #BDC5D1;
     background-position: center;
     background-repeat: no-repeat;
     background-image: url("/assets/stacklogo/robotmob_3.png");
+}
+
+.drone-info-left p {
+    line-height: 37px;
+    font-size: 17px;
+    font-weight: 400;
+    font-family: 'Poppins';
+    padding: 20px 0px;
+}
+.stack-title{
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  line-height: 30px !important;
+  padding: 10px 0px;
+}
+
+ul.arvr-features-list {
+    line-height: 37px;
+    list-style: disc;
+    font-size: 18px;
 }

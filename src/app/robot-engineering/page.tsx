@@ -17,6 +17,8 @@ import Image from "next/image";
 import "./robot.css";
 import ArvrJoinForm from '@/components/Sidebar';
 import robotreview from "/public/assets/robot-review.png";
+import skipper from '/public/assets/skipper.png';
+
 
 const modules = [
   {
@@ -556,7 +558,7 @@ const RobotEngineering = () => {
       
 
 
-      <div className="skippers-section">
+      <div className="skippers-section desktop-only">
           <div className="faq-header">
             <hr className="faq-leftt" />
             <h2>
@@ -602,6 +604,22 @@ const RobotEngineering = () => {
             </div>
           </div>
       </div>
+      
+
+      <div className="skippers-section mobile-only">
+                <div className="faq-header">
+                <hr className="faq-leftt"/>
+                <h2><span className="dronehighlight">Skippers</span> of the Month</h2>
+                <hr className="faq-rightt"/>
+                </div>
+                <p className="faq-subtext">Insights from those who&apos;ve walked the path you&apos;re about to take.</p>
+
+                <div className="skippers-podium-wrapper">
+                <Image src={skipper} alt="Skipper Logo" className="skipper-logo" />                 
+                </div>
+                </div>
+      
+
       
 
       <div className="faq-section">

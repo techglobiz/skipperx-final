@@ -290,10 +290,13 @@
 }
 
 .arvr-info-stats {
-  display: flex;
+  display: flex; /* Shown by default on desktop */
+  flex-direction: row;
   gap: 20px;
   margin-bottom: 0px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
 }
 
 .arvr-stat-card {  
@@ -303,7 +306,9 @@
   width: 177px;
   height: 155px;
   color: white;
-  background: linear-gradient(145deg, #251b3d, #201537);
+  background: linear-gradient(180deg, #231C30 0%, #181320 100%),
+linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+
 }
 
 .stat-icon span {
@@ -379,14 +384,25 @@
 
 .arvr-testimonial-person img {
   width: 100%;
-  height: auto;
+  height: 110px;
   display: block;
+  
+}
+
+img.nvidia-logo {
+    width: 58%;
+    margin: 0px auto;
+    padding: 8px 11px;
+    height: auto;
 }
 
 .arvr-testimonial-name {
-  padding: 5px 0;
-  font-size: 12px;
-  font-style: poppins;
+  padding: 8px 0;
+    font-size: 16px;
+    font-family: poppins;
+    font-weight: 400;
+    line-height: 22px;
+
 }
 
 .arvr-testimonial-name strong {
@@ -534,7 +550,7 @@
 }
 
 .arvr-modules .highlight {
-  color: #00ff88;
+  color: #ff4b4b;
 }
 
 .module-card {
@@ -660,15 +676,27 @@
   }
 
   .arvr-testimonial-person {
-    width: 100%;
-    max-width: 250px;
-    margin: 0 auto;
+ width: 100%;
+        /* max-width: 272px; */
+        margin: 0 auto;
+        height: auto;
+        padding: 0px 30px;
   }
 
+  img.nvidia-logo {
+    width: 50% !important;
+    margin: 0px auto;   
+    padding: 10px 0px;
+}
+
   .arvr-testimonial-quote {
-    width: 100%;
-    height: auto;
-    min-height: 150px;
+           width: 100%;
+        height: auto;
+        min-height: 150px;
+        border: none;     
+        margin: -11px 0px;
+        padding: 15px 15px;
+    
   }
 
   /* Responsive for avatars */
@@ -690,6 +718,15 @@
     text-align: center;
     gap: 20px;
   }
+
+
+  .certificate-background-img {
+    height: 219px;
+    display: block;
+    max-height: 300px;
+}
+
+
 }
 
 /* Additional responsive styles for smaller mobile devices */
@@ -754,6 +791,7 @@
 
   .arvr-info-section {
     padding: 15px;
+    background: #1e1e1e;
   }
 
   .arvr-info-heading {
@@ -766,6 +804,18 @@
     font-size: 14px;
     line-height: 1.6;
   }
+
+.arvr-testimonial-person img {
+  width: 100%;
+  height: auto;
+  display: block;
+  padding: 20px;
+  
+}
+
+
+
+
 }
 
 
@@ -825,12 +875,25 @@
 
 /* Media queries for responsive visibility */
 @media screen and (max-width: 768px) {
-    .desktop-only {
+   .desktop-only {
         display: none !important;
     }
     
     .mobile-only {
+        display: block !important;
+    }
+    
+    .arvr-info-stats {
+        display: none !important;
+    }
+    
+    .drone-info-stats-mobile {
         display: flex !important;
+        flex-direction: row !important;
+        gap: 8px !important;
+        margin-bottom: 20px !important;
+        overflow-x: auto !important;
+        width: 100% !important;
     }
     
     .drone-stat-section-mobile {
@@ -848,14 +911,33 @@
         flex: 1 !important;
         margin: 0 !important;
         min-width: 0 !important;
+        background-size: inherit !important;
+        border:none !important;
+        
     }
     .offer-btn{
       width: 200px !important;
     }
+
+    .drone-stat-card-mobile {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+
+    .arvr-testimonial-person img {
+  width: 100%;
+  height: auto;
+  display: block;
+  padding: 20px;
+  
+}
+
+
 }
 
 @media screen and (min-width: 769px) {
-    .mobile-only {
+   .mobile-only {
         display: none !important;
     }
     
@@ -863,11 +945,16 @@
         display: block !important;
     }
     
-    .drone-info-stats {
+    .arvr-info-stats {
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: nowrap !important;
         justify-content: flex-start !important;
+        gap: 20px !important;
+    }
+    
+    .drone-info-stats-mobile {
+        display: none !important;
     }
     
     .drone-stat-section {
@@ -883,3 +970,71 @@
 }
 
 
+/* Mobile Stats Styles */
+.drone-info-stats-mobile {
+  display: none; /* Hidden by default, shown only on mobile */
+  flex-direction: row;
+  gap: 8px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  width: 100%;
+}
+
+.drone-stat-card-mobile {
+  background: linear-gradient(180deg, #231C30 0%, #181320 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+  padding: 12px 8px;
+  border-radius: 10px;
+  color: white;
+  min-width: 110px;
+  max-width: 130px;
+  flex: 1;
+  flex-shrink: 0;
+}
+
+.stat-content-mobile {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  gap: 6px;
+  height: 100%;
+  justify-content: center;
+}
+
+.stat-icon-mobile {
+  font-size: 14px;
+  color: #fb4b4b;
+  background-color: #000;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-bottom: 4px;
+}
+
+.stat-text-mobile {
+  flex: 1;
+  width: 100%;
+}
+
+.stat-text-mobile h4 {
+  font-size: 16px;
+  margin: 0 0 2px 0;
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.stat-text-mobile p {
+  color: #ccc;
+  font-size: 10px;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.2;
+  word-wrap: break-word;
+  text-align: center;
+}

@@ -135,22 +135,19 @@ export default function StartupStackPage() {
 
 
 
-        <div className="drone-info-section">
-  {/* Left Section */}
-  <div className="drone-info-left">
-    {/* Intro Section */}
+  <div className="drone-info-section">  
+  <div className="drone-info-left">   
     <div>
       <h2 className="drone-info-heading">
         Unlock the mindset of a <span> modern entrepreneur</span>
       </h2>
 
-      <p className="drone-info-para">
-        Master the essentials of building and growing businesses—from strategic
-        decision-making to understanding human behavior.
-        <strong>
-          Develop a growth mindset and resilience to navigate challenges.
-        </strong>
-      </p>
+      <p>
+        Master the essentials of building and growing businesses—from strategic decision-making to understanding human behavior.       
+        </p>
+        <p className="stack-title">
+          Blend technology and business:
+        </p>
 
       <ul className="arvr-features-list">
         <li>Use Artificial Intelligence to drive smarter strategies.</li>
@@ -186,7 +183,7 @@ export default function StartupStackPage() {
         <div className="robot-testimonial-person">
           <Image src={ramya_shrivastav} alt="Ramya Shrivastav" />
           <div className="robot-testimonial-name">
-            Ramya Shrivastav <br /> <span>Psychology Mentor</span>
+            Ramya <br /> <span>Psychology</span>
             <Image src={corizo} className="robot-review-img" alt="Corizo Logo" />
           </div>
         </div>

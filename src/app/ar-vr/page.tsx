@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import './page.css';
 import certificateDisplay from "/public/assets/dcerti.png";
 import brochureImage from "/public/assets/drone-brochure.png";
-import asishIcon from '/public/assets/droneashish.png';
+import asishIcon from '/public/assets/shrey.png';
 import bgImage from '/public/assets/dronebg.png';
 import faqarrow from "/public/assets/faqarrow.png";
 import hari from '/public/assets/harih.jpg';
@@ -15,8 +15,13 @@ import sakshi from '/public/assets/saksh.png';
 import soumya from "/public/assets/soumya.png";
 import suresh from "/public/assets/suresh.png";
 import vishal from "/public/assets/vishal.png";
-
+import nivida from '/public/assets/nivida.png';
+import fireicon from '/public/assets/fire-icon.png';
 import Image from 'next/image';
+import skipper from '/public/assets/skipper.png';
+
+
+
 
 const modules = [
   { title: "Introduction to AR/VR Fundamentals", content: "Learn the basics of augmented and virtual reality technologies." },
@@ -207,22 +212,7 @@ const ARVRPage = () => {
 
         
         <div className="arvr-info-section">
-          <div className="arvr-info-left mt-3">
-            {/* <div className="arvr-info-stats">
-              {[
-                { count: '42,000+', label: 'Mentees trained' },
-                { count: '2 Months', label: 'Duration' },
-                { count: '7+', label: 'Industry experts' }
-              ].map((item, index) => (
-                <div className="arvr-stat-card" key={index}>
-                  <div className="stat-icon">
-                    <span>⚡</span>
-                  </div>
-                  <h4>{item.count}</h4>
-                  <p>{item.label}</p>
-                </div>
-              ))}
-            </div> */}
+          <div className="arvr-info-left mt-3">           
 
             <h2 className="arvr-info-heading">
               Advanced  <span>Growth</span> Strategy
@@ -237,12 +227,78 @@ const ARVRPage = () => {
               preparing you for careers in gaming, entertainment, education, and enterprise solutions.
             </p>
 
+
+
+            <div className="skilllist-section">
+              <h3>Skills you will gain with this path</h3>
+              <div className="skills-tags">
+                <span>Rendering</span>
+                <span>Modeling</span>
+                <span>Immersion</span>
+
+                <span>Tracking</span>
+                <span>Animation</span>
+                <span>Projection</span>
+                <span>Visualization</span>
+                <span>Mapping</span>
+                <span>Calibration</span>
+                <span>Prototyping</span>
+                <span>Optimization</span>
+
+                <span>Scripting</span>
+                <span>Debugging</span>
+                <span>Calibration</span>
+              </div>
+            </div>
+
+
+            <div className="arvr-info-stats desktop-only">
+              {[
+                { count: '42,000+', label: 'Mentees trained' },
+                { count: '2 Months', label: 'Duration' },
+                { count: '7+', label: 'Industry experts' }
+              ].map((item, index) => (
+                <div className="arvr-stat-card" key={index}>
+                  <div className="stat-icon">
+                    <span><Image src={fireicon} alt="Fire Icon" /></span>
+                  </div>
+                  <h4>{item.count}</h4>
+                  <p>{item.label}</p>
+                </div>
+              ))}
+            </div>
+
+
+
+             {/* Mobile Stats - Single Line */}
+            <div className="drone-info-stats-mobile mobile-only">
+              {[
+                { count: '42,000+', label: 'Mentees trained' },
+                { count: '2 Months', label: 'Duration' },
+                { count: '7+', label: 'Industry experts' }
+              ].map((item, index) => (
+                <div className="drone-stat-card-mobile" key={index}>
+                  <div className="stat-content-mobile">
+                    <span className="stat-icon-mobile"><Image src={fireicon} alt="Fire Icon" /></span>
+                    <div className="stat-text-mobile">
+                      <h4>{item.count}</h4>
+                      <p>{item.label}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+
+
+
             <div className="arvr-testimonial-box">
               <div className="arvr-testimonial-person">
                 <Image src={asishIcon} alt="Ashish Singhal" />
                 <div className="arvr-testimonial-name">
-                  Ashish Singhal <br />
-                  <strong>Tech Innovator.</strong>
+                 Shreyansh Singh  <br />
+                  <Image src={nivida} alt="NVIDIA Logo" className="nvidia-logo" />
+                  {/* <strong>Tech Innovator.</strong> */}
                 </div>
               </div>
 
@@ -481,7 +537,7 @@ const ARVRPage = () => {
       
       
       
-              <div className="skippers-section">
+              <div className="skippers-section desktop-only">
                 <div className="faq-header">
                   <hr className="faq-leftt"/>
                   <h2><span className="dronehighlight">Skippers</span> of the Month</h2>
@@ -529,6 +585,18 @@ const ARVRPage = () => {
             </div>
       
       
+                <div className="skippers-section mobile-only">
+                <div className="faq-header">
+                <hr className="faq-leftt"/>
+                <h2><span className="dronehighlight">Skippers</span> of the Month</h2>
+                <hr className="faq-rightt"/>
+                </div>
+                <p className="faq-subtext">Insights from those who&apos;ve walked the path you&apos;re about to take.</p>
+
+                <div className="skippers-podium-wrapper">
+                <Image src={skipper} alt="Skipper Logo" className="skipper-logo" />                 
+                </div>
+                </div>
       
       
       

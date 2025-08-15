@@ -2183,6 +2183,7 @@ body, html {
 @media (max-width: 480px) {
   .certificate-title {
     font-size: 1.2rem;
+    padding: 6px 0px;
   }
 
   .certificate-subtext {
@@ -2192,6 +2193,26 @@ body, html {
   .certificate-overlay {
     top: 12%;
   }
+
+  .certificate-background-img {
+    height: 219px;
+    display: block;
+    max-height: 300px;
+}
+
+.skippers-podium-wrapper {    
+    padding-top: 0px !important;
+}
+
+    .hub-card-mobile, .hub-card_2-mobile, .hub-card_3-mobile {
+        flex: 1 !important;
+        margin: 0 !important;
+        min-width: 0 !important;
+        background-size: inherit !important;
+        border: none !important;
+    }
+
+
 }
 
 
@@ -2356,7 +2377,34 @@ body, html {
 }
 
 
+.certificate-background-img {
+    height: 219px;
+    display: block;
+    max-height: 300px;
+}
 
+.skippers-podium-wrapper {    
+    padding-top: 0px !important;
+}
+
+
+    .hub-card-mobile, .hub-card_2-mobile, .hub-card_3-mobile {
+        flex: 1 !important;
+        margin: 0 !important;
+        min-width: 0 !important;
+        background-size: inherit !important;
+        border: none !important;
+    }
+
+ .drone-info-para, .drone-info-para1 {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    img.robot-review-img {
+    margin: 5px auto !important;    
+   
+}
 
 
 }
@@ -3244,5 +3292,16 @@ body, html {
     width: 300px !important;    
 }
 
+.skippers-podium-wrapper {    
+    padding-top: 0px;
+   }
+
+   img.skipper-logo {
+    width: 100%;
+    height: auto;
+}
 
 }
+
+
+

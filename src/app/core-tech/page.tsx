@@ -146,28 +146,19 @@ export default function CoretechPage() {
       <h2 className="drone-info-heading">
         Unlock the mindset of a <span> modern entrepreneur</span>
       </h2>
-
-      <p className="drone-info-para">
-        Master the essentials of building and growing businesses—from strategic
-        decision-making to understanding human behavior.
-        <strong>
-          Develop a growth mindset and resilience to navigate challenges.
-        </strong>
-      </p>
-
-      <ul className="arvr-features-list">
+      <p>Develop practical skills to design, build, and secure next-generation systems.</p>
+      <p className="stack-title"> What you’ll explore:</p>
+        <ul className="arvr-features-list">
         <li>Use Artificial Intelligence to drive smarter strategies.</li>
-        <li>
-          Decode the dynamics of finance, stock markets, and business analytics.
-        </li>
-        <li>
-          Explore creative domains like fashion designing to stand out in competitive markets.
-        </li>
-        <li>
-          Learn the foundations of psychology and human resource management to lead effectively.
-        </li>
+        <li>Master the art of strategic decision-making.</li>
+        <li>Understand human behavior to build better teams.</li>
+        <li>Develop a growth mindset and resilience to navigate challenges.</li>
+        <li>Work with emerging fields like IoT, Robotics, Embedded Systems, Hybrid & Electric Vehicles, and Auto CAD.</li>
       </ul>
     </div>
+    
+
+
 
     {/* Mentors Section */}
     <div>
