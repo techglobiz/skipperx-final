@@ -1,10 +1,15 @@
 .trust-container {
   background-color: rgb(30, 30, 30);
   color: #fff;
-  padding: 30px 20px 55px 0;
+  padding: 100px 20px 55px 20px;
   font-family: 'Poppins', sans-serif;
   text-align: center;
   overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
 .trust-header {
@@ -16,7 +21,7 @@
 }
 
 .trust-header h2 {
-  font-size: 38px;
+  font-size: clamp(24px, 5vw, 38px);
   font-weight: 600;
 }
 
@@ -47,7 +52,7 @@
 
 .trust-subtext {
   color: #aaa;
-  font-size: 20px;
+  font-size: clamp(14px, 3vw, 20px);
   font-family: poppins;
   margin: 10px 0 40px;
 }
@@ -56,7 +61,9 @@
 .trust-carousel-wrapper {
   position: relative;
   width: 100%;
-  height: 370px;
+  height: clamp(300px, 50vh, 370px);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .trust-carousel {
@@ -67,8 +74,8 @@
 .card {
   background: #2a2a2a;
   border-radius: 12px;
-  padding: 30px 20px;
-  width: 436px;
+  padding: clamp(15px, 3vw, 30px) clamp(10px, 2vw, 20px);
+  width: clamp(250px, 33.33%, 400px);
   position: absolute;
   top: 0;
   left: 50%;
@@ -76,6 +83,7 @@
   opacity: 0.4;
   transition: all 0.6s ease;
   z-index: 1;
+  box-sizing: border-box;
 }
 .card.active {
   transform: translateX(-50%) scale(1);
@@ -104,7 +112,7 @@
 }
 
 .card h3 {
-  font-size: 24px;
+  font-size: clamp(16px, 3vw, 24px);
   margin-bottom: 20px;
   font-family: Playfair Display;
   font-weight: 100px;
@@ -112,7 +120,7 @@
 }
 
 .card p {
-  font-size: 14px;
+  font-size: clamp(12px, 2vw, 14px);
   line-height: 1.4;
   font-style: italic;
   padding-left: 12px;
@@ -185,30 +193,185 @@
 }
 
 .avatars span {
-  font-size: 16px;
-  color: #aaa;
-  margin-left: 10px;
-  font-weight: 600;
+    font-size: 18px;
+    color: #aaa;
+    margin-left: 10px;
+    font-weight: 400;
+    font-family: 'Poppins';
+    line-height: 30px;
 }
 
 
+
 /* === Responsive === */
+@media (max-width: 1024px) {
+  .trust-container {
+    padding: 50px 15px;
+  }
+  
+  .card.prev {
+    transform: translateX(-110%) scale(0.92);
+  }
+  
+  .card.next {
+    transform: translateX(10%) scale(0.92);
+  }
+}
+
 @media (max-width: 768px) {
+  .trust-container {
+    padding: 30px 10px;
+    min-height: 100vh;
+  }
+  
+  .trust-header {
+    gap: 10px;
+    flex-direction: column;
+  }
+  
   .trust-header h2 {
-    font-size: 22px;
+    font-size: clamp(20px, 6vw, 28px);
+    margin: 10px 0;
+  }
+  
+  .rightt, .leftt {
+    display: none;
+  }
+  
+  .trust-subtext {
+    font-size: clamp(14px, 4vw, 18px);
+    margin: 20px 0 30px;
   }
 
   .trust-carousel-wrapper {
     height: auto;
+    min-height: 400px;
   }
 
   .card {
     position: relative;
-    width: 90%;
+    width: 95%;
+    max-width: 500px;
     transform: none !important;
     opacity: 1 !important;
-    margin-bottom: 20px;
+    margin: 0 auto 20px;
     height: auto !important;
+    left: auto;
+    top: auto;
+    display: none;
+  }
+  
+  .card.active {
+    display: block;
+    background: linear-gradient(to bottom right, #2B2A2A 0%, #2C2B2B 51%, #535353 100%);
+  }
+  
+  .card.prev,
+  .card.next {
+    display: none;
+  }
+  
+  .trust-authorr {
+    padding-left: 15px;
+    padding-top: 30px;
+    gap: 8px;
+  }
+  
+  .trust-authorr img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .trust-footer {
+    margin-top: 40px;
+  }
+  
+  .avatars img {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .avatars span {
+    font-size: 16px;
+  }
+  
+  .trust-indicators {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .trust-container {
+    padding: 20px 5px;
+  }
+  
+  .trust-header h2 {
+    font-size: clamp(18px, 7vw, 24px);
+  }
+  
+  .trust-subtext {
+    font-size: clamp(12px, 4vw, 16px);
+  }
+  
+  .card {
+    width: 98%;
+    padding: 20px 15px;
+  }
+  
+  .card h3 {
+    font-size: clamp(14px, 4vw, 20px);
+    margin-bottom: 15px;
+  }
+  
+  .card p {
+    font-size: clamp(11px, 3vw, 13px);
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  
+  .trust-authorr {
+    padding-left: 10px;
+    padding-top: 20px;
+  }
+  
+  .trust-authorr img {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .trust-arrows button {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+}
+
+/* Landscape mobile optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+  .trust-container {
+    padding: 15px 10px;
+    min-height: 100vh;
+  }
+  
+  .trust-header h2 {
+    font-size: clamp(18px, 4vw, 24px);
+    margin: 5px 0;
+  }
+  
+  .trust-subtext {
+    margin: 10px 0 20px;
+  }
+  
+  .trust-carousel-wrapper {
+    min-height: 300px;
+  }
+  
+  .card {
+    padding: 15px 10px;
+  }
+  
+  .trust-footer {
+    margin-top: 20px;
   }
 }
 
@@ -235,6 +398,31 @@
 
 .trust-arrows button:hover {
   background: rgba(255, 255, 255, 0.3);
+}
+
+.trust-indicators {
+  display: none;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: #666;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.indicator.active {
+  background: #ff7043;
+}
+
+.indicator:hover {
+  background: #999;
 }
 
 

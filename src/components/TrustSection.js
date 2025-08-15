@@ -44,7 +44,7 @@ const TrustSection = () => {
         <h2>
           Trusted by <span className="highlight">12,000+</span> Builders, Doers & Innovators
         </h2>
-        <p><span className="tp">who chose Skipper to upskill, pivot, and lead in the modern workplace.</span></p>
+        <p className='tp'>who chose Skipper to upskill, pivot, and lead in the modern workplace.</p>
 
         <div className="trust-stats">
           <div><strong>4.8 ⭐</strong><br />Google Rating</div>

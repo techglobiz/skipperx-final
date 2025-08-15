@@ -1,6 +1,6 @@
 .circlebody{
     padding-bottom: 128px;
-    padding: 64px 120px 128px 120px;
+    padding: 64px 80px 128px 80px;
 }
 .circle-section {
   padding: 30px 20px 40px 20px;
@@ -8,10 +8,10 @@
   border-radius: 16px;
   background-position: center;
   color: white;
-  width: 1030px;
-  height: 597px;
+  /* width: 1030px; */
+  height: 700px;
   font-family: 'Poppins', sans-serif;
-  background-image: url('/assets/circlebg.png');
+  background-image: url('/assets/circle.png');
 
 }
 
@@ -59,8 +59,8 @@
   padding: 12px 12px;
   font-size: 15px;
   margin-left: 30px;
-  margin-top: 0px;
-  margin-bottom: 44px;
+  margin-top: -4px;
+  margin-bottom: 48px;
   display: flex;
 }
 
@@ -75,7 +75,7 @@
   margin-left: 30px;
   display: flex;
   margin-bottom: 13px;
-  margin-top: 90px;
+  margin-top: 33px;
 }
 .circle-item1 p{
     font-size: 14px;
@@ -130,7 +130,8 @@
   font-size: 15px;
   margin-left: 30px;
   display: flex;
-  margin-top: 0px;
+  margin-bottom: 10px;
+  margin-top: -8px;
 }
 .circle-item4 p{
     font-size: 14px;
@@ -216,5 +217,40 @@
 
   .circle-heading {
     font-size: 28px;
+  }
+
+  .circlebody {    
+    padding: 46px 10px 50px 10px;
+}
+
+
+  .circle-section {
+    padding: 30px 20px 40px 20px;
+    background-size: cover;
+    border-radius: 16px;
+    background-position: center;
+    color: white;
+    /* height: 580px; */
+    font-family: 'Poppins', sans-serif;
+    background-image: url(/assets/circlecerti.png);
+}
+
+
+
+}
+
+
+
+/* Hide on mobile */
+@media (max-width: 768px) {
+  .mob_non {
+    display: none !important;
+  }
+}
+
+/* Hide on desktop */
+@media (min-width: 769px) {
+  .desk_none {
+    display: none !important;
   }
 }

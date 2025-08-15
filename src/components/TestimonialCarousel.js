@@ -1,6 +1,6 @@
 "use client";
 import Image from 'next/image';
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import './TestimonialCarousel.css'; // Assuming you have a CSS file for styles
 import testimonials from "./testimonialData";
 import hari from '/public/assets/harih.jpg';
@@ -28,7 +28,7 @@ const TestimonialCarousel = () => {
   };
 
   // Prevent auto-play overflow
-  const startAutoPlay = () => {
+  const startAutoPlay = useCallback(() => {
     stopAutoPlay();
     intervalRef.current = setInterval(() => {
       if (!isHovered.current) {
@@ -38,7 +38,7 @@ const TestimonialCarousel = () => {
         });
       }
     }, 3000);
-  };
+  }, [length]);
 
   const stopAutoPlay = () => {
     if (intervalRef.current) clearInterval(intervalRef.current);
@@ -64,7 +64,7 @@ const TestimonialCarousel = () => {
   useEffect(() => {
     startAutoPlay();
     return stopAutoPlay;
-  }, []);
+  }, [startAutoPlay]);
 
   // Optional: Debug logs
   useEffect(() => {
@@ -76,11 +76,15 @@ const TestimonialCarousel = () => {
 
   return (
     <section className="carousel-container">
-      <h2>
+
+      {/* <h2 className='cartitle'>Approved by the Ones Who Built the <span>Best </span> </h2> */}
+
+      <h2 className='cartitle'>
         <span className="lefttt" /> Approved by the Ones Who Built the{" "}
         <span className="highlight">Best</span>{" "}
         <span className="righttt" />
       </h2>
+
       <p className="subtitle">Not Just Students – Leaders Learn from Us Too</p>
 
       <div
@@ -107,31 +111,48 @@ const TestimonialCarousel = () => {
           onTransitionEnd={handleTransitionEnd}
         >
           {extendedSlides.map((item, i) => (
-            <div className="testimonial-card" key={i}>
-              <div className="testimonial-left">
-                <Image
-                  src={`/assets/${item.logo}`}
-                  alt={item.company}
-                  className="company-logoo"
-                  style={item.logoSize}
-                  width={170}
-                  height={65}
-                />
-                <p className="quote">“{item.quote}”</p>
-                <p className="name">{item.name}</p>
-                <p className="position">{item.position}</p>
+              <div className="testimonial-card" key={i}>
+                <div className="testimonial-left"> 
+                  <p className="best-member-since">MEMBER SINCE <strong>{item.year}</strong></p>
+                  <p className="quote">“{item.quote}”</p>
+                 
+                  <div className="best-author">
+                      <div className="best-name-logo">
+                    <div className="best-name-text">
+                       <p className="name">{item.name}</p>
+                  <p className="position">{item.position} </p>
+                    </div>
+                  <div className="best-divider"></div>
+                  <Image
+                    src={`/assets/${item.logo}`}
+                    alt={item.company}
+                    className="company-logoo"
+                    style={item.logoSize}
+                    width={170}
+                    height={65}
+                  /> 
+                   </div>
+                    </div>
+                </div>
+                <div className="testimonial-right">
+                  <Image
+                    src={`/assets/${item.image}`}
+                    alt={item.name}
+                    className="person-img"
+                    style={item.imageSize}
+                    width={300}
+                    height={350}
+                  />
+                </div>
               </div>
-              <div className="testimonial-right">
-                <Image
-                  src={`/assets/${item.image}`}
-                  alt={item.name}
-                  className="person-img"
-                  style={item.imageSize}
-                  width={300}
-                  height={350}
-                />
-              </div>
-            </div>
+
+
+            
+            
+            
+            
+            
+            
           ))}
         </div>
 
@@ -156,9 +177,9 @@ const TestimonialCarousel = () => {
           <Image src={hari} alt="avatar" width={50} height={50} />
           <Image src={sakshi} alt="avatar" width={50} height={50} />
           <Image src={sai} alt="avatar" width={50} height={50} />
-          <span>Be one of them</span>
+          <span>4K+ members have completed this program, be one of them</span>
         </div>
-        <button className="avabtn">Apply Now</button>
+        <button className="avabtn">Explore Programs</button>
       </div>
     </section>
   );

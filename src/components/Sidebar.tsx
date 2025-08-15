@@ -1,13 +1,41 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { usePathname } from 'next/navigation';
 
-const ArvrJoinForm = () => {
+interface ArvrJoinFormProps {
+  formName?: string;
+}
+
+const ArvrJoinForm = ({ formName = '' }: ArvrJoinFormProps) => {
+  const pathname = usePathname();
+  
+  const getFormNameFromUrl = (path: string) => {
+    const formNameMap: Record<string, string> = {
+      '/drone-engineering': 'Drone Engineering Course Registration',
+      '/robot-engineering': 'Robot Engineering Course Registration',
+      '/ar-vr': 'AR VR Development Course Registration',
+      '/startup-stack': 'Startup Stack Course Registration',
+      '/core-tech': 'Core Tech Course Registration',
+      '/creators-hub': 'Creators Hub Course Registration',
+      '/contact': 'General Contact Form',
+      '/about': 'About Us Inquiry Form',
+      '/courses': 'Course Inquiry Form'
+    };
+    
+    return formNameMap[path] || 'General Registration Form';
+  };
+
+  const getEffectiveFormName = useCallback(() => {
+    if (formName) return formName; // Use prop if provided
+    return getFormNameFromUrl(pathname); // Otherwise use URL-based detection
+  }, [formName, pathname]);
   const [formData, setFormData] = useState({
     firstName: '',
     email: '',
     collegeName: '',
     areaOfInterest: '',
-    phoneNumber: ''
+    phoneNumber: '',
+    formName: getEffectiveFormName()
   });
   const [formErrors, setFormErrors] = useState<{
     firstName?: string;
@@ -18,6 +46,18 @@ const ArvrJoinForm = () => {
   }>({});
   const [submitMessage, setSubmitMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Update formName when prop changes or URL changes
+  useEffect(() => {
+    const newFormName = getEffectiveFormName();
+    console.log('Current pathname:', pathname);
+    console.log('Prop formName:', formName);
+    console.log('Effective form name:', newFormName);
+    setFormData(prev => ({
+      ...prev,
+      formName: newFormName
+    }));
+  }, [formName, pathname, getEffectiveFormName]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -78,7 +118,7 @@ const ArvrJoinForm = () => {
     
     try {
       // Google Sheets integration
-      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyVLb8jM6AgUb2R2YCbTNnV7vELhBn6pShgL_dH2PZHfK5PgGs8ZGEfJOm2KgA7l-5V/exec';
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyk1LWW9RMXuExhh-vTac4DGRLtttdCYxbUG6-TKP2W0iB51mHlDxew3yx-oOCIvcCQ/exec';
       
       const formDataToSend = new FormData();
       formDataToSend.append('firstName', formData.firstName);
@@ -86,7 +126,16 @@ const ArvrJoinForm = () => {
       formDataToSend.append('collegeName', formData.collegeName);
       formDataToSend.append('areaOfInterest', formData.areaOfInterest);
       formDataToSend.append('phoneNumber', formData.phoneNumber);
+      formDataToSend.append('FormName', formData.formName); // Changed to match Google Sheets column name
       formDataToSend.append('timestamp', new Date().toISOString());
+      
+      // Debug: Log the form data being sent
+      console.log('Form data being sent:');
+      console.log('FormName:', formData.formName);
+      console.log('pathname:', pathname);
+      for (const pair of formDataToSend.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+      }
       
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
@@ -100,7 +149,8 @@ const ArvrJoinForm = () => {
           email: '',
           collegeName: '',
           areaOfInterest: '',
-          phoneNumber: ''
+          phoneNumber: '',
+          formName: getEffectiveFormName()
         });
         setFormErrors({});
       } else {
@@ -122,6 +172,13 @@ const ArvrJoinForm = () => {
         </div>
       )}
       <form className="arvr-join-form" onSubmit={handleSubmit}>
+                        {/* Hidden field for formName */}
+                        <input
+                          type="hidden"
+                          name="formName"
+                          value={formData.formName}
+                        />
+                        
                         <div className="arvr-form-group">                  
                           <input
                             type="text"

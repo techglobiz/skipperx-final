@@ -6,13 +6,10 @@ import certificateDisplay from "/public/assets/dcerti.png";
 import brochureImage from "/public/assets/drone-brochure.png";
 import asishIcon from '/public/assets/droneashish.png';
 import bgImage from '/public/assets/dronebg.png';
-import eightseven from "/public/assets/eight-seven.png";
 import faqarrow from "/public/assets/faqarrow.png";
 import hari from '/public/assets/harih.jpg';
 import harish from '/public/assets/harisha.jpg';
 import bulbIcon from '/public/assets/holding-bulb.png';
-import nineeight from "/public/assets/nine-eight.png";
-import nineseven from "/public/assets/nine-seven.png";
 import sai from '/public/assets/sai.jpg';
 import sakshi from '/public/assets/saksh.png';
 import soumya from "/public/assets/soumya.png";
@@ -51,10 +48,24 @@ const ARVRPage = () => {
     setActiveIndex(index === activeIndex ? null : index);
   };
 
+  const [showForm, setShowForm] = useState(false);
+
+  const handlePricingClick = () => {
+    console.log('Button clicked, current showForm state:', showForm);
+    console.log('Setting showForm to true');
+    setShowForm(true);
+    console.log('setShowForm(true) called');
+  };
+
 
 
 
   const getNextDeadline = () => {
+    // Check if we're in the browser environment
+    if (typeof window === 'undefined') {
+      return new Date().getTime() + 48 * 60 * 60 * 1000;
+    }
+    
     const savedDeadline = localStorage.getItem('droneOfferDeadline');
     const now = new Date().getTime();
   
@@ -73,7 +84,10 @@ const ARVRPage = () => {
   
       if (difference <= 0) {
         const next = now + 48 * 60 * 60 * 1000;
-        localStorage.setItem('droneOfferDeadline', next.toString());
+        // Check if we're in the browser environment
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('droneOfferDeadline', next.toString());
+        }
         return calculateTimeLeft(next);
       }
   
@@ -98,6 +112,9 @@ const ARVRPage = () => {
     });
   
     useEffect(() => {
+      // Only run on client side
+      if (typeof window === 'undefined') return;
+      
       const deadline = getNextDeadline();
   
       const interval = setInterval(() => {
@@ -108,8 +125,16 @@ const ARVRPage = () => {
       return () => clearInterval(interval);
     }, [calculateTimeLeft]); // Added missing dependency
 
+    // Debug effect to track showForm state
+    useEffect(() => {
+      console.log('showForm state changed:', showForm);
+    }, [showForm]);
+
   return (
     <>
+      {/* Debug: Show current form state */}
+      
+      
       {/* <Navbar /> */}
       <div className='arvrbody'>
         <div
@@ -140,7 +165,7 @@ const ARVRPage = () => {
             <button className="arvr-outline-btn">Experience</button>
           </div>
 
-          <button className="arvr-start-btn">Start Learning</button>
+          <button className="arvr-start-btn" onClick={handlePricingClick}>Start Learning</button>
 
           <div className="arvr-scroll-wrapper">
             <div className="arvr-scroll-track">
@@ -161,23 +186,23 @@ const ARVRPage = () => {
 
         <div className="drone-accredit-section">   
         </div>
-        <div className="drone-stat-section">
-                    <div className="stat-card">
-                      <h2>98<span>%</span></h2>
-                      <p>Completion rate <br />for our 1:1 Program.</p>
-                      <Image src={nineeight} className="nineseven" alt="Ninety-Eight Percent" />
-                    </div>
-                    <div className="stat-card">
-                      <h2>97<span>%</span></h2>
-                      <p>Of participants report<br /> high engagement</p>
-                      <Image src={nineseven} className="nineone" alt="Ninety-Seven Percent" />
-                    </div>
-                    <div className="stat-card">
-                      <h2>87<span>%</span></h2>
-                      <p>Of participants stay <br />with their company.</p>
-                      <Image src={eightseven} className="eight" alt="Eighty-Seven Percent" />
-                    </div>
+
+
+          <div className="drone-stat-section desktop-only">
+          <div className="stat-card">                      
+          </div>
+          <div className="stat-card_2">                     
+          </div>
+          <div className="stat-card_3">                      
+          </div>
         </div>
+        
+
+        <div className="drone-stat-section-mobile mobile-only">
+            <div className="hub-card-mobile"></div>
+            <div className="hub-card_2-mobile"></div>
+            <div className="hub-card_3-mobile"></div>
+          </div>
         
 
         
@@ -366,14 +391,12 @@ const ARVRPage = () => {
                 </div>
               </div>
 
-              <button className="arvr-pricing-btn">Start Learning</button>
+              <button className="arvr-pricing-btn" onClick={handlePricingClick}>Start Learning</button>
             </div>
-            <div className="arvr-pricingform-card">
-              <h2>Master AR/VR Engineering Program</h2>
-              
-              <ArvrJoinForm />
-              
-            </div>
+            {/* <div className="arvr-pricingform-card">
+              <h2>Master AR/VR Engineering Program</h2>              
+              <ArvrJoinForm />              
+            </div> */}
 
           </div>
         </div>
@@ -404,7 +427,7 @@ const ARVRPage = () => {
             ))}
           </div>
 
-          <button className="offer-btn">Apply Now</button>
+          <button className="offer-btn" onClick={handlePricingClick}>Apply Now</button>
       </div>
       
        <div className="cert-drone">
@@ -560,6 +583,103 @@ const ARVRPage = () => {
               </div>
       
           
+      {/* Modal Form - Using ArvrJoinForm component */}
+      {showForm && (
+        <div 
+          className="arvr-form-wrapper" 
+          style={{
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: '10000',
+            visibility: 'visible',
+            opacity: '1'
+          }}
+          onClick={(e) => {
+            // Close modal when clicking the backdrop
+            if (e.target === e.currentTarget) {
+              console.log('Closing form by clicking backdrop');
+              setShowForm(false);
+            }
+          }}
+        >
+          <div className="arvr-form" style={{
+            backgroundColor: 'white',
+            borderRadius: '12px',
+            padding: '20px',
+            maxWidth: '500px',
+            width: '90%',
+            maxHeight: '90vh',
+            overflowY: 'auto',
+            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+            position: 'relative'
+          }}>
+            <div className="arvr-form-card">
+              <div className="form-header" style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: '20px',
+                borderBottom: '1px solid #eee',
+                paddingBottom: '15px'
+              }}>
+                <h3 className="arvr-form-title" style={{
+                  margin: '0',
+                  fontSize: '24px',
+                  fontWeight: 'bold',
+                  color: '#333'
+                }}>
+                  Master AR/VR Engineering Program
+                </h3>
+                <button 
+                  type="button" 
+                  className="close-form-btn"
+                  onClick={() => {
+                    console.log('Closing form via close button');
+                    setShowForm(false);
+                  }}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    fontSize: '28px',
+                    cursor: 'pointer',
+                    color: '#666',
+                    padding: '0',
+                    width: '30px',
+                    height: '30px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: '50%',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseOver={(e) => {
+                    const target = e.target as HTMLButtonElement;
+                    target.style.backgroundColor = '#f5f5f5';
+                    target.style.color = '#333';
+                  }}
+                  onMouseOut={(e) => {
+                    const target = e.target as HTMLButtonElement;
+                    target.style.backgroundColor = 'transparent';
+                    target.style.color = '#666';
+                  }}
+                >
+                  ×
+                </button>
+              </div>
+
+              <ArvrJoinForm />
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* <Footer /> */}
     </>
   );

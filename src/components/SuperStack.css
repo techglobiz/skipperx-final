@@ -1,6 +1,6 @@
 .stack-wrapper {
-  padding: 40px 20px 40px 20px;
-  background: rgb(30, 30, 30);
+  padding: 0px 20px 64px 20px;
+    background-color: #1C1C1C;
   font-family: 'Poppins', sans-serif;
   color: white;
   text-align: center;
@@ -10,7 +10,8 @@
   font-size: 38px;
   font-weight: 600;
   font-family: Playfair Display;
-  margin-bottom: 40px;
+  margin-bottom: 56px;
+  margin-top: -10px;
 }
 
 .highlight-text {
@@ -19,16 +20,43 @@
 }
 
 .stack-card-container {
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: center;
+    gap: 10px;
+    
+    width: 100%;
+    box-sizing: border-box;
+    width: 92%;
+    margin: 0px auto;
+
+}
+
+.stack-card-container > div {
+    flex: 1 1 calc((100% - 20px) / 3); /* 3 boxes per row with gap */
+    max-width: calc((100% - 20px) / 3);
+    box-sizing: border-box;
+}
+.stack-card-container > div:nth-child(3n+1) {
+    margin-right: 10px; /* right margin for first box in each row */
+}
+
+
+
+
+
+
+/* .stack-card-container {
   display: flex;
-  gap: 17px;
+  gap: 10px;
   flex-wrap: wrap;
   padding-right: 10px;
   justify-content: center;
-}
+} */
 
 .stack-box {
   position: relative;
-  width: 350px;
+  width: 358px;
   height: 329px;
   border-radius: 8px;
   background-size: cover;
@@ -147,27 +175,6 @@
   }
 }
 
-@media (max-width: 768px) {
-  .stack-card-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .stack-box {
-    width: 90%;
-    height: 420px;
-  }
-
-  .stack-learn {
-    width: 42px;
-    height: 42px;
-    font-size: 18px;
-  }
-
-  .scroll-content {
-    font-size: 12px;
-  }
-}
 .arrow-icon {
   width: 18px;
   height: 15px;
@@ -179,3 +186,57 @@
   transform: rotate(45deg);
   transition: transform 0.3s ease;
 }
+
+@media (max-width: 768px) {
+  /* .stack-card-container {
+    flex-direction: column;
+    align-items: center;
+  } */
+
+  .stack-box {
+    width: 90%;
+    height: 420px;
+    margin-bottom: 15px;
+  }
+
+  .stack-learn {
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+  }
+
+  .scroll-content {
+    font-size: 12px;
+  }
+
+
+  .stack-card-container {
+    /* display: revert-layer; */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 56px 10px 7px 10px;
+    width: 100%;
+    box-sizing: border-box;
+    /* width: 92%; */
+    margin: 0px auto;
+}
+
+   .stack-card-container > div {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .stack-heading {   
+    font-family: Playfair Display;
+    margin-bottom: 0px;
+   
+      }
+
+      .stack-card-container > div:nth-child(3n+1) {
+    margin-right: 0px;
+}
+
+
+}
+

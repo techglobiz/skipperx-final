@@ -1,8 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
-import bgImage from '/public/assets/1111.jpg';
+import bgImage from '/public/assets/banner.jpg';
 import './hero.css';
 
+/* Commented out unused categories array
 const categories = [
   "For Creators", "For Tech Enthusiasts", "For Aero Minds",
   "For Biz Leaders", "For Founders", "For Designers",
@@ -81,20 +82,21 @@ const categories = [
   "Starter Pack", "For AR Innovators", "For Drone Engineers",
   "For Marketers", "For Strategists", "For Explorers"
 ];
+*/
 
 const Hero = () => {
   return (
     <div className="hero-img-wrapper">
       <Image src={bgImage} alt="background" className="hero-img" />
       <div className="overlayp">
-        <div className="tagG">Trusted by <strong> 50,000+ </strong> ambitious learners</div>
+        {/* <div className="tagG">Trusted by <strong> 50,000+ </strong> ambitious learners</div> */}
         <h1>
           Your dream skill is, not days, not hours but <span className="highlight-red">minutes</span> away
         </h1>
         <p>Built for Innovators, Entrepreneur & Hustlers</p>
         <button className="btn red">Explore Programs</button>
 
-        
+        {/* 
         <div className="hero-scroll-row">
           <div className="scroll-track3">
             {categories.concat(categories).map((cat, idx) => (
@@ -129,6 +131,7 @@ const Hero = () => {
             ))}
           </div>
         </div>
+        */}
 
       </div>
     </div>

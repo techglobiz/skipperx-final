@@ -1,51 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --brand-color: oklch(44.4% 0.177 26.899);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
 }
 
-/* Custom utility classes */
-.bg-brand {
-  background-color: var(--brand-color);
+body, html {
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  background-color: rgb(30, 30, 30);
+  overflow-x: hidden;
 }
 
-.text-brand {
-  color: var(--brand-color);
-}
-
-.border-brand {
-  border-color: var(--brand-color);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.bg-gray-100{
+  background: #1C1C1C;
 }
 
 
 
-/* OLD NAVBAR STYLES - COMMENTED OUT TO AVOID CONFLICTS WITH FrontendNavbar.css
-.navbar-old {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 40px;
-  background: #FCFCF9;
-  color: black;
-  position: relative;
-  z-index: 999;
-}
-*/
 
 .left-section {
   display: flex;
@@ -462,15 +439,9 @@ body {
 /************************************************************/
 
 
-.dronebody {
-  background-color: #1C1C1C;
-  
-  /* padding: 34px 120px 64px 55px; */
-}
 
-.accredit{
-  background-color: #1C1C1C;
-}
+
+
 .drone-engineering-section {
   color: white;
   text-align: center;
@@ -645,31 +616,64 @@ body {
 
 
 
-.drone-stat-section {
-  display: flex;
-  justify-content: space-between;
-  padding: 64px 120px;
-  background-color: #1c1c1c;
-  flex-wrap: nowrap;
-  gap: 27px;
-}
+
 
 
 .stat-card {
   position: relative;
-  color: #ffffff;
-  border-radius: 12px;
-  width: 390px;
-  height: 182px;
-  padding: 24px;
-  margin-left: -5px;
-  margin-right: -5px;
-  box-sizing: border-box;
-  overflow: hidden;
-  border: 1px solid #787979;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    color: #ffffff;
+    border-radius: 12px;
+    height: 182px;
+    width: 33%;
+    padding: 26px 1px;
+    /* margin-left: -5px; */
+    /* margin-right: -5px; */
+    box-sizing: border-box;
+    overflow: hidden;
+    border: 1px solid #787979;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("/assets/stacklogo/stackcard_1.png");
+
+}
+
+.stat-card_2{
+  position: relative;
+    color: #ffffff;
+    border-radius: 12px;
+    height: 182px;
+    width: 33%;
+    padding: 26px 1px;
+    /* margin-left: -5px; */
+    /* margin-right: -5px; */
+    box-sizing: border-box;
+    overflow: hidden;
+    border: 1px solid #787979;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("/assets/stacklogo/stack_card_2.png");
+
+}
+
+.stat-card_3{
+  position: relative;
+    color: #ffffff;
+    border-radius: 12px;
+    height: 182px;
+    width: 33%;
+    padding: 26px 1px;
+    /* margin-left: -5px; */
+    /* margin-right: -5px; */
+    box-sizing: border-box;
+    overflow: hidden;
+    border: 1px solid #787979;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("/assets/stacklogo/stackcard_3.png");
+
 }
 
 .nineone{
@@ -684,6 +688,11 @@ body {
   margin-top: -2px;
 }
 .nineseven{
+  width: 383px;
+  transform: translate(-19%, -71.5%);
+  margin-top: -12px;
+}
+.nineeight{
   width: 383px;
   transform: translate(-19%, -71.5%);
   margin-top: -12px;
@@ -775,6 +784,7 @@ body {
   gap: 20px;
   margin-bottom: 0px;
   flex-wrap: wrap;
+  margin-top: 40px;
 }
 
 .drone-stat-card {
@@ -823,10 +833,10 @@ body {
   color: #ff4b4b;
 }
 
-.drone-info-para {
+.drone-info-para {  
   font-size: 16px;
   font-style: poppins;
-  color: #bbb;
+  color: #FFF;
   width: 580px;
   margin-bottom: 16px;
   line-height: 1.5;
@@ -897,7 +907,181 @@ body {
 }
 
 
+.bg-stack {
+    background: #1c1c1c;
+}
 
+
+@media (min-width:1025px) {
+  .desktop-nav {
+    display: block;
+  }
+  .tablet-nav {
+    display: none;
+  }
+  .mobile-nav {
+    display: none;
+  }
+}
+
+/* Media queries for responsive behavior */
+@media (max-width: 768px) {
+
+   .desk_none { display: none !important; }
+    .desktop-only {
+        display: none !important;
+    }
+
+     .desktop{ display: none; }
+    
+    .mobile-only {
+        display: block !important;
+    }
+    
+    .drone-stat-section {
+        display: none;
+    }
+    
+    .drone-stat-section-mobile {
+        display: flex !important;
+    }
+
+    .drone-stat-section {
+        flex-direction: initial !important;
+        padding: 40px 20px;
+        text-align: center;
+        gap: 20px;
+    }
+
+.drone-info-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  padding: 10px 10px 30px 25px;
+  flex-wrap: wrap;
+  background: #1C1C1C;
+}
+
+
+.robot-testimonial-person {   
+    height: 220px !important; 
+
+}
+
+.robot-testimonial-name
+{
+  padding: 15px 0 !important;
+  font-size:15px !important;
+}
+
+.drone-info-stats-stack{
+  width: 100% ;
+}
+
+.drone-stat-card{
+  width:43% !important;
+}
+
+.drone-stat-card{
+  height:auto !important;
+}
+
+.drone-brochure{
+  padding: 0px 20px !important;
+}
+.faq-header h2{
+  font-size: 20px !important;
+
+}
+.stack-head-ing{
+  font-size: 25px !important;
+}
+
+.accredited-text {   
+    font-size: 31px !important;
+    line-height: 53px !important;
+}
+
+.drone-parts{
+  padding: 0px !important;
+}
+.cert-drone{
+  padding: 60px 10px !important;
+}
+
+.skipper-img {    
+    margin-left: 39% !important;
+}
+
+.skipper-box h4 {   
+    margin-left: 20% !important;
+}
+
+.skipper-box.silver {
+    left: 25% !important;
+    
+}
+
+.drone-cta-buttons {
+    flex-direction: inherit;
+    align-items: center;
+    gap: 10px;
+  } 
+  
+  .drone-outline-btn {
+    /* width: 80%; */
+    max-width: 200px;
+  }
+  
+  .drone-start-btn {
+    /* width: 80%; */
+    max-width: 250px;
+  }
+
+  .drone-offer-section {
+        padding: 30px 15px;
+    }
+
+    .offer-timer {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+
+    .drone-stat-section-mobile {    
+    flex-direction: inherit !important;
+    padding: 50px 10px !important;
+   
+      }
+
+      img.creatorsmob {
+    margin: 0px auto;
+    width: 90%;
+    height: auto;
+}
+
+
+.podium-bg {    
+    height: 320px !important;
+}
+
+ .skipper-box p {
+    font-size: 12px !important;
+    font-family: playfair display;
+    margin: 0px 0px 0px 20px !important;
+    font-weight: 600 !important;
+    padding: 12px 0px !important;
+}
+/* img.skipper-img-vishal {
+    width: 90px;
+    height: 70px;
+    margin-left: 39%;
+    margin-bottom: 40%;
+    margin-top: 22%;
+} */
+
+}
 
 
 
@@ -1038,7 +1222,7 @@ body {
   padding: 5px 20px 5px 20px;
   width: 481px;
   border: 12px solid #aeadad;
-  height: 590px;
+  /* height: 590px; */
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
   font-family: 'Poppins', sans-serif;
   color: #111;
@@ -1295,7 +1479,7 @@ body {
 
 
 .module-section {
-  padding: 40px 120px 40px 0px;
+  padding: 40px 0px 40px 0px;
   color: #ffffff;
 }
 
@@ -1337,7 +1521,7 @@ body {
   background-color: #14101A;
   border-radius: 9px;
   padding: 8px 24px 8px;
-  width: 550px;
+  width: 100%;
   margin-bottom: 8px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
   transition: box-shadow 0.3s ease;
@@ -1452,6 +1636,9 @@ body {
   color: white;
 }
 .robot-built-section .highlight {
+  color: #ff4b4b;
+}
+.highlight{
   color: #ff4b4b;
 }
 
@@ -1665,7 +1852,7 @@ body {
 }
 
 .review-carousel-wrapper {
-  width: 616px;
+  /* width: 616px; */
   height: 267px;
   overflow: hidden;
   position: relative;
@@ -1926,7 +2113,7 @@ body {
 .certificate-image-wrapper {
   position: relative;
   width: 100%;
-  max-width: 1087px;
+  /* max-width: 1087px; */
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
@@ -1974,6 +2161,7 @@ body {
 @media (max-width: 768px) {
   .certificate-title {
     font-size: 1.5rem;
+    margin-top: -31px;
   }
 
   .certificate-subtext {
@@ -1983,6 +2171,13 @@ body {
   .certificate-overlay {
     top: 15%;
   }
+
+ 
+
+
+
+
+
 }
 
 @media (max-width: 480px) {
@@ -2001,7 +2196,7 @@ body {
 
 
 .drone-parts{
-  padding: 64px 40px;
+  padding: 64px 113px;
 }
 
 .drone-parts-section {
@@ -2014,8 +2209,8 @@ body {
 }
 
 .drone-content {
-  max-width: 1080px;
-  height: 809px;
+  max-width: 1200px;
+  height: 890px;
   margin: 0 auto;
   position: relative;
 }
@@ -2150,6 +2345,20 @@ body {
     text-align: center;
     font-size: 22px;
   }
+
+
+   .skipper-img {
+    width: 90px !important;
+    height: 85px !important;
+    object-fit: cover;
+    margin-bottom: 8px;
+    border-radius: 8px;
+}
+
+
+
+
+
 }
 @media (max-width: 768px) {
   .whatsapp-button {
@@ -2442,11 +2651,11 @@ body {
 
 .brochure-overlay h3 {
   font-size: 32px;
-  font-weight: 500;
+  font-weight: 600;
   font-family: playfair display;
-  margin-top: -10px;
+ line-height: 60px;
   padding-left:30px ;
-  padding-bottom: 8px;
+  
 }
 
 .brochure-overlay h3 span {
@@ -2454,27 +2663,27 @@ body {
 }
 
 .brochure-overlay p {
-  font-size: 20px;
-  color: #c9c9c9;
-  font-style: poppins;
-  margin-bottom: 16px;
-  padding-left:30px ;
+      font-size: 20px;
+    color: #c9c9c9;
+    font-family: poppins;
+    margin-bottom: 16px;
+    padding-left: 30px;
+    font-weight: 400;
 }
 
 .download-brochure-btn {
-  padding: 16px 32px;
-  font-size: 16px;
-  color: white;
-  font-style: bold poppins;
-  margin-top: 15px;  
-  border: 1px solid #000;
-  border-radius: 8px;
-  background:linear-gradient(to bottom right, #FE8324 10% ,#FF4101 100%);
-  font-weight: 500;
-  font-size: 16px;
-  width: 232px;
-  height: 52px;
-  margin-left: 30px;
+    padding: 8px 32px;
+    font-size: 16px;
+    color: white;
+    font-family: 'Poppins';
+    margin-top: 15px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    background: linear-gradient(to bottom right, #FE8324 10%, #FF4101 100%);
+    font-weight: 600;
+    line-height: 32px;
+    margin-left: 4%;
+
 }
 
 
@@ -2526,9 +2735,9 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  width: 971px;
+  /* width: 971px; */
   height: 371px;
-  margin-left: 17px;
+  /* margin-left: 17px; */
 }
 
 .skipper-img {
@@ -2611,7 +2820,7 @@ body {
 
 /* Positions */
 .skipper-box.silver {
-  left: 29%;
+  left: 33%;
   top: 55%;
   transform: translate(-50%, -50%);
 }
@@ -2692,6 +2901,8 @@ body {
 .faq-section {
   padding: 64px 120px 128px;
   color: #ffffff;
+  background: #1c1c1c;
+
 }
 
 .faq-header {
@@ -2757,7 +2968,7 @@ body {
 }
 
 .faq-list {
-  max-width: 1200px;
+  /* max-width: 1200px; */
   margin: 0 auto;
 }
 
@@ -2835,5 +3046,186 @@ body {
 
   .faq-answer {
     font-size: 15px;
+  }
+}
+
+
+
+
+
+
+
+
+.faq-title span {
+  color: #ffffff;
+}
+
+.faq-list {
+  /* max-width: 1200px; */
+  margin: 0 auto;
+}
+
+.faq-card {
+  background-color: #14101A;
+  border-radius: 9px;
+  padding: 13px 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
+  transition: box-shadow 0.3s ease;
+}
+
+.faq-card:hover {
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+}
+
+.faqarrow{
+  width: 29px;
+  height: 29px;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.faq-question h4 {
+  font-size: 14px;
+  font-style: poppins;
+  font-weight: 600;
+  margin: 0;
+}
+
+.accordion-icon {
+  font-size: 18px;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+
+.accordion-icon.open {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  margin-top: 10px;
+  font-size: 14px;
+  width: 900px;
+  line-height: 1.6;
+  color: #a7a7a7;
+  margin-bottom: 10px;
+}
+
+
+
+
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .faq-section {
+    padding: 40px 20px;
+  }
+
+  .faq-title {
+    font-size: 26px;
+  }
+
+  .faq-card {
+    padding: 18px 20px;
+  }
+
+  .faq-question h4 {
+    font-size: 16px;
+  }
+
+  .faq-answer {
+    font-size: 15px;
+  }
+}
+
+/* Responsive styles for AR/VR pricing cards */
+@media screen and (max-width: 768px) {
+  .arvr-pricing-card,
+  .arvr-pricingform-card {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 20px auto;
+    padding: 15px;
+    border-width: 6px;
+    height: auto;
+    min-height: 400px;
+  }
+
+  .arvr-pricing-card h2,
+  .arvr-pricingform-card h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .arvr-features-list {
+    margin: 15px 0 20px 0;
+  }
+
+  .arvr-features-list li {
+    font-size: 13px;
+    margin-bottom: 15px;
+  }
+
+  .arvr-price-section {
+    justify-content: center;
+    margin: 10px 0;
+  }
+
+  .arvr-original-price {
+    font-size: 18px;
+  }
+
+  .arvr-current-price {
+    font-size: 24px;
+  }
+
+  .price {
+    text-align: center;
+    margin-left: 0;
+  }
+
+  /* Responsive styles for Drone pricing cards */
+  .drone-pricing-card {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 20px auto;
+    padding: 15px;
+    border-width: 6px;
+    height: auto;
+    min-height: 400px;
+  }
+
+  .drone-pricing-card h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .drone-features-list {
+    margin: 15px 0 20px 0;
+  }
+
+  .drone-features-list li {
+    font-size: 13px;
+    margin-bottom: 15px;
+  }
+
+  .drone-price-section {
+    justify-content: center;
+    margin: 10px 0;
+  }
+
+  .drone-original-price {
+    font-size: 18px;
+  }
+
+  .drone-current-price {
+    font-size: 24px;
   }
 }

@@ -1,9 +1,11 @@
 .trust-wrapper {
-  background: 1C1C1C;
+  background: #1C1C1C;
   color: white;
-  padding: 128px 20px 128px 20px;
+  padding: 50px 15px 90px 24px;
   text-align: center;
 }
+
+
 
 .accredited-text {
   font-size: 24px;
@@ -18,7 +20,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
-  margin-bottom: 128px;
+  margin-bottom: 90px;
 }
 
 .partner-logo {
@@ -32,18 +34,20 @@
 
 .trust-box {
   background: #2B2A2A;
-  border-radius: 8px;
-  padding: 15px 20px 35px 20px;
-  max-width: 1100px;
-  margin: 0 auto;
+  border-radius: 12px;
+  padding: 34px 20px 34px 20px;
+  /* max-width: 1100px; */
+  margin: 0 60px;
 }
 
 
 .trust-box h2 {
-  font-size: 38px;
-  font-style: bold;
-  margin-bottom: 5px;
   font-family: Playfair Display;
+font-weight: 700;
+font-size: 38px;
+line-height: 120%;
+text-align: center;
+
 }
 
 .trust-box .highlight {
@@ -59,25 +63,53 @@
   padding-bottom: 30px;
 }
 .trust-box p {
-  font-size: 15px;
-  margin-bottom: 15px;
-  font-style: poppins;
-  opacity: 0.85;
+  font-size: 20px;
+    font-family: poppins;
+    opacity: 0.85;
+    line-height: 53px;
+    color: #9A9A9A;
+    font-weight: 500;
+
+}
+
+.person-card p {
+      font-size: 12px;
+    font-family: poppins;
+    opacity: 0.85;
+    line-height: 22px;
+    color: #000000;
+    font-weight: 400;
+    padding: 8px 0px 12px 0px;
+
 }
 
 .trust-stats {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 23px;
+  /* margin-bottom: 23px; */
   line-height: 25px;
   font-size: 17px;
   text-align: center;
+  padding: 0px 125px 60px 125px;
 }
 
 .trust-stats > div {
   flex: 1;
   padding: 0 20px;
   position: relative;
+  font-family: Poppins;
+font-weight: 500;
+font-size: 20px;
+line-height: 29px;
+
+
+}
+
+.trust-stats > div strong{
+  font-weight: 600;
+    font-size: 24px;
+    line-height: 40px;
+    font-family: 'Poppins';
 }
 
 
@@ -87,7 +119,7 @@
   right: 0;
   top: 5%;
   bottom: 5%;
-  width: 1px;
+  width: 2px;
   background: #DDE3E3; 
   opacity: 0.5;
 }
@@ -165,4 +197,92 @@
   object-fit: contain;
   vertical-align: top;
   height: 22px;
+}
+
+/*************Responsive******************/
+@media (max-width: 768px) {
+  .trust-wrapper {
+    padding: 50px 15px 50px 15px;
+  }
+
+  .accredited-text {
+    font-size: 20px;
+  }
+
+  .logo-row {   
+    margin-bottom: 60px;
+}
+
+  .trust-box {
+    padding: 20px 10px;
+    margin: 0px auto;
+
+  }
+
+  .trust-box h2 {
+        
+        font-family: Playfair Display;
+        font-weight: 700;
+        font-style: Bold;
+        font-size: 23px;     ;
+        line-height: 38px;
+        letter-spacing: 0%;
+        text-align: center;
+  }
+
+  .trust-box p {
+      font-family: Poppins;
+      font-weight: 400;     
+      font-size: 16px;
+      line-height: 25px;
+      letter-spacing: 0px;
+      text-align: center;
+      margin-top: 0px;
+
+  }
+
+  /* .person-card {
+    width: 80px;
+  } */
+
+  .people-scroll-wrapper {
+    padding-bottom: 5px;
+  }
+
+  .trust-stats {
+    display: flex;
+    justify-content: space-around;   
+    line-height: 22px;
+    font-size: 16px;
+    text-align: center;
+    padding: 0px 8px 60px 8px;
+}
+
+.trust-stats > div:not(:last-child)::after {
+    content: none;    
+}
+
+.trust-stats > div strong {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 29px;
+    font-family: 'Poppins';
+}
+
+.trust-stats > div {
+    font-family: Poppins;
+font-weight: 400;
+font-size: 12px;
+line-height: 30px;
+letter-spacing: 0px;
+text-align: center;
+vertical-align: middle;
+padding: 0px 5px;
+}
+
+
+
+
+
+
 }

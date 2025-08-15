@@ -8,6 +8,7 @@ const LaunchSection = () => {
 
         {/* Left Section with Image Background */}
         <div className="launch-left">
+
           <div className="launch-left-bg"></div> {/* Background image div */}
 
           <h2>
@@ -18,7 +19,7 @@ const LaunchSection = () => {
             <em>Programs</em>
           </h3>
           <p>Next-gen learning designed to launch your career.</p>
-          <button className="launch-btn">Explore Programs</button>
+          <button className="launch-btn mob_non">Explore Programs</button>
         </div>
 
         {/* Right Animated Background + Card */}
@@ -68,6 +69,7 @@ const LaunchSection = () => {
             <div className="coming-soon">COMING SOON</div>
           </div>
         </div>
+          <button className="launch-btn desk_none">Explore Programs</button>
       </div>
     </section>
   );

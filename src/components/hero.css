@@ -1,43 +1,30 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  
-}
-
-body, html {
-  font-family: 'Segoe UI', sans-serif;
-  color: white;
-  background-color: rgb(30, 30, 30);
-  overflow-x: hidden;
-}
 
 .hero-img-wrapper {
   position: relative;
-  height: 90vh;
+  /* height: 90vh; */
   width: 100%;
   overflow: hidden;
 }
 
 .hero-img {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover;
   position: absolute;
   z-index: 0;
 }
 
 .overlayp {
-  position: relative;
-  z-index: 1;
-  background: rgba(0, 0, 0, 0.6);
-  height: 100%;
-  padding: 60px 40px 60px 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  color: white;
+ position: relative;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.6);
+    /* height: 100%; */
+    padding: 320px 40px 180px 10px;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: white;
 }
 
 .overlayp .tagG {
@@ -81,12 +68,14 @@ body, html {
   bottom: 0; 
 }
 .overlayp h1 {
-  font-size: 58px;
-  max-width: 900px;
-  font-size: bold;
-  font-family: Playfair Display;
-  margin-bottom: 5px;
-  margin-top: -7px;
+      font-size: 52px;
+    max-width: 900px;
+    font-weight: bold;
+    font-family: Playfair Display;
+    margin-bottom: 5px;
+    /* margin-top: -7px; */
+    line-height: 70px;
+
 }
 
 .highlight-red {
@@ -104,16 +93,20 @@ body, html {
 }
 
 .btn.red {
-  background-color: #FB614B;
-  color: white;
-  height: 58px;
-  font-size: 20px;
-  margin-bottom: 30px;
-  padding: 16px 32px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: background 0.3s ease;
+     color: white;
+    
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    padding: 13px 60px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;   
+    cursor: pointer;
+    transition: background 0.3s ease;
+    background: linear-gradient(89.32deg, #FE8324 0.46%, #FF4101 99.51%);
+    border: 1px solid linear-gradient(90deg, #FF9B26 0%, #FFFFFF 100%);
 }
 
 .btn.red:hover {
@@ -209,10 +202,36 @@ body, html {
 }
 
 
+/* .hero-scroll-row{
+  padding: 50px 0;
+} */
+.hero-scroll-row h2{
+  font-family: Poppins;
+font-weight: 600;
+font-size: 16px;
+line-height: 29px;
+letter-spacing: 0px;
+text-align: center;
+color: #BDC5D1;
+padding: 50px 0px;
+
+}
+
+
 /* === Responsive === */
 @media (max-width: 768px) {
+
+
+  .overlayp {    
+    padding: 100px 20px 20px 20px;  
+    color: white;
+  }
+
+
   .overlayp h1 {
-    font-size: 24px;
+        font-size: 32px;
+        line-height: 45px;
+    
   }
 
   .overlayp p {

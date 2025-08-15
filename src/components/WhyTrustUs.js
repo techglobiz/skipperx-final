@@ -10,7 +10,7 @@ import harish from '/public/assets/harisha.jpg'
 import sai from '/public/assets/saisai.png'
 import hari from '/public/assets/harih.jpg'
 import sakshi from '/public/assets/saksh.png'
-import './WhyTrustUs.css'; // Assuming you have a CSS file for styling
+import './WhyTrustUs.css'; 
 import Image from "next/image";
 
 const testimonials = [
@@ -61,17 +61,55 @@ const testimonials = [
 const WhyTrustUs = () => {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
   const goNext = () => setIndex((prev) => (prev + 1) % testimonials.length);
   const goPrev = () => setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
+  // Handle touch events for mobile swiping
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) goNext();
+    if (isRightSwipe) goPrev();
+  };
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   useEffect(() => {
     if (paused) return;
-    const interval = setInterval(goNext, 2500);
+    const interval = setInterval(goNext, 3000);
     return () => clearInterval(interval);
   }, [paused]);
 
   const getClass = (i) => {
+    if (isMobile) {
+      return i === index ? 'card active' : 'card';
+    }
+    
     if (i === index) return 'card active';
     if (i === (index + 1) % testimonials.length) return 'card next';
     if (i === (index - 1 + testimonials.length) % testimonials.length) return 'card prev';
@@ -91,6 +129,9 @@ const WhyTrustUs = () => {
         className="trust-carousel-wrapper"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         <div className="trust-carousel">
           {testimonials.map((t, i) => (
@@ -113,6 +154,18 @@ const WhyTrustUs = () => {
           <button onClick={goPrev}>&#10094;</button>
           <button onClick={goNext}>&#10095;</button>
         </div>
+        
+        {isMobile && (
+          <div className="trust-indicators">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                className={`indicator ${i === index ? 'active' : ''}`}
+                onClick={() => setIndex(i)}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="trust-footer">

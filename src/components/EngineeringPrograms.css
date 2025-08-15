@@ -1,25 +1,37 @@
 .eng-section {
-  background-color: rgb(30, 30, 30);
+  background-color: #1C1C1C;
   padding: 64px 20px 64px 20px;
   font-family: 'Poppins', sans-serif;
 }
 
 
 .eng-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-left: 30px;
-  margin-right: 30px;
-  padding-top: 56px;
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: center;
+    gap: 10px;
+    padding: 56px 0px 0 0px;
+    width: 100%;
+    box-sizing: border-box;
+    width: 92%;
+    margin: 0px auto;
+
+}
+
+.eng-container > div {
+    flex: 1 1 calc((100% - 20px) / 3); /* 3 boxes per row with gap */
+    max-width: calc((100% - 20px) / 3);
+    box-sizing: border-box;
+}
+.eng-container > div:nth-child(3n+1) {
+    margin-right: 10px; /* right margin for first box in each row */
 }
 
 .eng-card {
-  width: 361px;
-  height: 401px;
+  /* width: 361px; */
+  /* height: 401px; */
   background-size: cover;
-  background-position: center;
+  /* background-position: center; */
   border-radius: 8px;
   padding: 24px 18px ;
   position: relative;
@@ -51,21 +63,38 @@
   font-family: 'Playfair Display', serif;
   font-weight: 600;
   margin-top: 145px;
-  margin-bottom: 11px;
+  margin-bottom: 16px;
 }
 
 .eng-testimonial {
-  background: #000;
-  padding: 12px 10px 12px 10px;
-  border-radius: 8px;
-  display: flex;
-  margin-top: -12px;
-  align-items: flex-start;
-  gap: 10px;
-  width: 333px;
-  min-height: 61px;
-  margin-bottom: auto;
+    background: #000;
+    padding: 12px 15px 12px 10px;
+    border-radius: 8px;
+    display: flex;
+    margin-top: -1px;
+    align-items: flex-start;
+    gap: 10px;
+    min-height: 61px;
+    margin-bottom: 45px;
+    margin-right: 7px;
+    position: relative;
+    color: #fff;
 }
+
+/* Large Triangle pointer - top left */
+.eng-testimonial::before {
+    content: "";
+    position: absolute;
+    top: -16px;   /* adjust for bigger size */
+    left: 15px;   /* offset from left */
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 16px solid #000; /* same as background */
+}
+
+
 
 .eng-avatar {
   width: 43px;
@@ -75,14 +104,16 @@
 }
 
 .eng-quote{
-  font-family: poppins;
-  font-size: 14px;
-  line-height: 1.4;
- 
+font-family: Poppins;
+font-weight: 300;
+font-style: Italic;
+font-size: 14px;
+line-height: 120%;
+color: #FFFFFF; 
 }
 
 .eng-success {
-  margin-top: 14px;
+  margin-top: 20px;
 }
 
 .eng-success-label {
@@ -155,6 +186,7 @@
   .eng-card {
     width: 100%;
     height: auto;
+    margin-bottom: 20px;
   }
 
   .eng-title {
@@ -169,4 +201,25 @@
   .eng-quote {
     font-size: 14px;
   }
+
+
+  .eng-container {
+    display: revert-layer;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 56px 10px 7px 10px;
+    width: 100%;
+    box-sizing: border-box;
+    /* width: 92%; */
+    margin: 0px auto;
+}
+
+   .eng-container > div {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+
+
 }

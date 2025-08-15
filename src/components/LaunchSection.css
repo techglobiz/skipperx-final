@@ -7,11 +7,11 @@
 }
 
 .launch-container {
-  max-width: 1150px;
+  /* max-width: 1150px; */
   height: 413px;
   width: 100%;
   border-radius: 10px;
-  margin-left: -40px;
+  margin: 0px auto;
   padding: 0px 5px 5px 35px;
   position: relative;
   display: flex;
@@ -72,8 +72,9 @@
 }
 
 .launch-btn {
-  background-color: white;
-  color: black;
+  
+  background: linear-gradient(89.32deg, #FE8324 0.46%, #FF4101 99.51%);
+color: #FFFFFF;
   padding: 10px 28px;
   font-size: 18px;
   width: 380px;
@@ -276,33 +277,9 @@
   right: -50px;
 }
 
-@media screen and (max-width: 768px) {
-  .launch-container {
-    flex-direction: column;
-    align-items: center;
-  }
 
-  .launch-left,
-  .launch-right {
-    width: 100%;
-  }
 
-  .launch-left h2 {
-    font-size: 24px;
-  }
 
-  .launch-left h3 {
-    font-size: 20px;
-  }
-
-  .right-card {
-    margin-top: 40px;
-  }
-
-  .block-columns {
-    display: none;
-  }
-}
 
 .launch-gradient-overlay {
   position: absolute;
@@ -362,4 +339,103 @@
 @keyframes star-twinkle {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.2); }
+}
+
+
+/*************************************/
+
+@media screen and (max-width: 768px) {
+  .launch-container {
+    flex-direction: column;
+    align-items: center;
+
+    height: auto;
+    width: 100%;
+    border-radius: 10px;
+    margin: 0px auto;
+    padding: 0px 5px 5px 35px;
+    position: relative;
+    display: flex;
+    background: #000;
+    justify-content: space-between;
+    gap: 0px;
+    overflow: hidden;
+  }
+
+  .launch-left,
+  .launch-right {
+    width: 100%;
+    height: auto;
+  }
+
+  .launch-left h2 {
+    font-size: 20px;
+    font-weight: 700;
+    font-family: Playfair Display;
+    margin-top: 30px;
+    line-height: 50px;
+  }
+
+  .launch-left h3 {
+    font-size: 20px;
+    line-height: 32px;
+    margin: 0px;
+  
+  }
+
+  .right-card {
+    margin-top: 40px;
+  }
+
+  .block-columns {
+    display: none;
+  }
+
+  .best-container {
+    background-color: #0c0c0c;
+    color: #fff;
+    padding: 40px 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+
+.left{
+  display: none;
+}
+.right{
+  display: none;
+}
+.launch-section {
+    width: 100%;
+    background: #0c0c0c;
+    padding: 30px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.launch-left {    
+    background: none; 
+    padding: 0px  ;   
+}
+
+
+}
+
+
+
+/* Hide on mobile */
+@media (max-width: 768px) {
+  .mob_non {
+    display: none !important;
+  }
+}
+
+/* Hide on desktop */
+@media (min-width: 769px) {
+  .desk_none {
+    display: none !important;
+  }
 }

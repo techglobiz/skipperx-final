@@ -1,12 +1,12 @@
 .arvrbody {
-  background-color: #0e0e0e;
+  background: linear-gradient(to right, #222222, #4e1c4e, #4b1d4f);
   padding-top: 50px;
 }
 
-.accredit{
-  background-color: #0e0e0e;
+/* .accredit{
+  background: linear-gradient(to right, #0e0e0e, #00ff88, #0e0e0e);
   padding-top: 50px;
-}
+} */
 .arvr-engineering-section {
   color: white;
   padding: 50px 10px 55px;
@@ -71,7 +71,7 @@
 .arvr-title {
   font-size: 45px;
   font-weight: 700;
-  max-width: 1200px;
+  /* max-width: 1200px; */
   font-family: 'Playfair Display', serif;
   line-height: 120%;
 }
@@ -224,6 +224,31 @@
   font-size: bold;
 }
 
+@media (max-width: 768px) {
+  .whatsapp-button {
+    position: relative;
+    transform: none;
+    left: auto;
+    bottom: auto;
+    margin: 40px auto 0;
+  }
+
+      .drone-stat-section-mobile {
+        display: flex !important;
+        padding: 50px 20px;
+    }
+
+        .hub-card-mobile {
+        margin: 0px 15px 0px 0px !important;
+    }
+
+        .hub-card_2-mobile {
+        margin: 0px 15px 0px 0px !important;
+    }
+
+}
+
+
 
 /* Responsive */
 @media screen and (max-width: 768px) {
@@ -237,17 +262,34 @@
   }
 
   .arvr-cta-buttons {
-    flex-direction: column;
+    flex-direction: inherit;
     align-items: center;
+    margin: 29px 0 36px 0;
   }
 
   .arvr-outline-btn {
-    width: 80%;
+    /* width: 80%; */
     margin-bottom: 10px;
   }
 
-  .arvr-start-btn {
-    width: 80%;
+
+  .drone-stat-section-mobile {
+        display: flex !important;
+        padding: 50px 20px;
+    }
+
+        .hub-card-mobile {
+        margin: 0px 15px 0px 0px;
+    }
+
+        .hub-card_2-mobile {
+        margin: 0px 15px 0px 0px;
+    }
+  
+
+  .arvr-engineering-section {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -258,7 +300,8 @@
   gap: 60px;
   padding: 10px 70px 30px 70px;
   flex-wrap: wrap;
-  background: #0d0d0d;
+  background: linear-gradient(to bottom, rgb(45 34 70), rgb(77 28 77));
+
 }
 
 .arvr-info-left {
@@ -269,6 +312,7 @@
 .arvr-info-right {
   flex: 0.8;
   min-width: 320px;
+  position: relative;
 }
 
 .arvr-info-stats {
@@ -581,12 +625,14 @@
 }
 
 .drone-stat-section {
-  display: flex;
+   display: flex !important;
+  flex-direction: row !important;
   justify-content: space-between;
-  padding: 64px 120px;
-  background-color: rgba(116, 20, 99, 0.4);
-  flex-wrap: nowrap;
+  padding: 70px 120px;   
+  flex-wrap: nowrap !important;
   gap: 27px;
+
+    background: linear-gradient(to bottom, rgb(78 28 78), rgb(45 34 70));
 }
 
 
@@ -614,4 +660,217 @@
   .arvr-phone-input {
     width: 100%;
   }
+
+  /* Responsive for arvr-info-section */
+  .arvr-info-section {
+    flex-direction: column;
+    padding: 20px;
+    gap: 30px;
+  }
+
+  .arvr-info-left {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .arvr-info-right {
+    min-width: unset;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  /* Responsive for testimonial box */
+  .arvr-testimonial-box {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .arvr-testimonial-person {
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+  }
+
+  .arvr-testimonial-quote {
+    width: 100%;
+    height: auto;
+    min-height: 150px;
+  }
+
+  /* Responsive for avatars */
+  .avatarsarvr {
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .top {
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  /* Responsive for drone-stat-section */
+  .drone-stat-section {
+    flex-direction: column;
+    padding: 40px 20px;
+    text-align: center;
+    gap: 20px;
+  }
 }
+
+/* Additional responsive styles for smaller mobile devices */
+@media (max-width: 480px) {
+  .arvr-engineering-section {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px 15px;
+    height: auto;
+    min-height: 400px;
+  }
+
+  .arvr-title {
+    font-size: 1.5rem;
+    line-height: 1.3;
+    padding: 0 5px;
+  }
+
+  .arvr-description {
+    font-size: 0.9rem;
+    padding: 0 10px;
+  }
+
+  .arvr-tag {
+    width: 200px;
+    font-size: 14px;
+    padding: 8px 15px 8px 30px;
+  }
+
+  .arvr-tag::before,
+  .arvr-tag::after {
+    width: 200px;
+  }
+
+  .arvr-cta-buttons {
+    gap: 5px;
+  }
+
+  .arvr-outline-btn {
+    width: 90%;
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  .arvr-start-btn {
+    width: 90%;
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+
+  .arvr-scroll-wrapper {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .arvr-info-section {
+    padding: 15px;
+  }
+
+  .arvr-info-heading {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .arvr-info-para,
+  .arvr-info-para1 {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+
+
+.hub-card-mobile {
+    position: relative;
+    color: #ffffff;
+    border-radius: 12px;
+    height: 182px;
+    width: 100%;
+    max-width: 350px;
+    padding: 26px 1px;    
+    box-sizing: border-box;
+    overflow: hidden;
+    border: 1px solid #787979;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("/assets/stacklogo/arvrmob.png");
+}
+
+.hub-card_2-mobile {
+    position: relative;
+    color: #ffffff;
+    border-radius: 12px;
+    height: 182px;
+    width: 100%;
+    max-width: 350px;
+    padding: 26px 1px;    
+    box-sizing: border-box;
+    overflow: hidden;
+    border: 1px solid #787979;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("/assets/stacklogo/arvrmob_2.png");
+}
+
+.hub-card_3-mobile {
+    position: relative;
+    color: #ffffff;
+    border-radius: 12px;
+    height: 182px;
+    width: 100%;
+    max-width: 350px;
+    padding: 26px 1px;    
+    box-sizing: border-box;
+    overflow: hidden;
+    border: 1px solid #787979;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("/assets/stacklogo/arvrmob_3.png");
+}
+
+
+
+/* Media queries for responsive visibility */
+@media screen and (min-width: 769px) {
+    .mobile-only {
+        display: none !important;
+    }
+    
+    .desktop-only {
+        display: block !important;
+    }
+    
+    .drone-info-stats {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        justify-content: flex-start !important;
+    }
+    
+    .drone-stat-section {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+    }
+    
+    .drone-card, .drone-card_2, .drone-card_3 {
+        width: 33% !important;
+        margin-bottom: 0 !important;
+    }
+}
+
+

@@ -1,0 +1,207 @@
+'use client';
+import React, { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+
+interface ArvrJoinFormWithUrlProps {
+  customFormName?: string;
+}
+
+const ArvrJoinFormWithUrl = ({ customFormName }: ArvrJoinFormWithUrlProps) => {
+  const pathname = usePathname();
+  
+  const getFormNameFromUrl = (path: string) => {
+    const formNameMap: Record<string, string> = {
+      '/drone-engineering': 'Drone Engineering Course Registration',
+      '/robot-engineering': 'Robot Engineering Course Registration',
+      '/ar-vr': 'AR VR Development Course Registration',
+      '/startup-stack': 'Startup Stack Course Registration',
+      '/core-tech': 'Core Tech Course Registration',
+      '/creators-hub': 'Creators Hub Course Registration',
+      '/contact': 'General Contact Form',
+      '/about': 'About Us Inquiry Form',
+      '/courses': 'Course Inquiry Form'
+    };
+    
+    return formNameMap[path] || 'General Registration Form';
+  };
+
+  const [formData, setFormData] = useState({
+    firstName: '',
+    email: '',
+    collegeName: '',
+    areaOfInterest: '',
+    phoneNumber: '',
+    formName: customFormName || getFormNameFromUrl(pathname)
+  });
+
+  const [formErrors, setFormErrors] = useState<{
+    firstName?: string;
+    email?: string;
+    collegeName?: string;
+    areaOfInterest?: string;
+    phoneNumber?: string;
+  }>({});
+  
+  const [submitMessage, setSubmitMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Update formName when URL changes or customFormName is provided
+  useEffect(() => {
+    const newFormName = customFormName || getFormNameFromUrl(pathname);
+    console.log('Current pathname:', pathname);
+    console.log('Detected form name:', newFormName);
+    setFormData(prev => ({
+      ...prev,
+      formName: newFormName
+    }));
+  }, [pathname, customFormName]);
+
+  // Rest of your form logic remains the same...
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    if (formErrors[name as keyof typeof formErrors]) {
+      setFormErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
+  };
+
+  const validateForm = () => {
+    const errors: Record<string, string> = {};
+    
+    if (!formData.firstName.trim()) {
+      errors.firstName = 'First name is required';
+    }
+    
+    if (!formData.email.trim()) {
+      errors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      errors.email = 'Email is invalid';
+    }
+    
+    if (!formData.collegeName.trim()) {
+      errors.collegeName = 'College name is required';
+    }
+    
+    if (!formData.areaOfInterest) {
+      errors.areaOfInterest = 'Area of interest is required';
+    }
+    
+    if (!formData.phoneNumber.trim()) {
+      errors.phoneNumber = 'Phone number is required';
+    } else if (!/^\d{10}$/.test(formData.phoneNumber)) {
+      errors.phoneNumber = 'Phone number must be 10 digits';
+    }
+    
+    return errors;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    const errors = validateForm();
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+    
+    setIsSubmitting(true);
+    setSubmitMessage('');
+    
+    try {
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyk1LWW9RMXuExhh-vTac4DGRLtttdCYxbUG6-TKP2W0iB51mHlDxew3yx-oOCIvcCQ/exec';
+      
+      const formDataToSend = new FormData();
+      formDataToSend.append('firstName', formData.firstName);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('collegeName', formData.collegeName);
+      formDataToSend.append('areaOfInterest', formData.areaOfInterest);
+      formDataToSend.append('phoneNumber', formData.phoneNumber);
+      formDataToSend.append('FormName', formData.formName); // Changed to match Google Sheets column name
+      formDataToSend.append('timestamp', new Date().toISOString());
+      formDataToSend.append('pageUrl', pathname); // Also send the page URL for tracking
+      
+      // Debug: Log the form data being sent
+      console.log('Form data being sent:');
+      console.log('FormName:', formData.formName);
+      console.log('pathname:', pathname);
+      for (const pair of formDataToSend.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+      }
+      
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        body: formDataToSend,
+      });
+      
+      if (response.ok) {
+        setSubmitMessage('Registration successful! We will contact you soon.');
+        setFormData({
+          firstName: '',
+          email: '',
+          collegeName: '',
+          areaOfInterest: '',
+          phoneNumber: '',
+          formName: customFormName || getFormNameFromUrl(pathname)
+        });
+        setFormErrors({});
+      } else {
+        throw new Error('Failed to submit form');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitMessage('Error submitting form. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div>
+      {submitMessage && (
+        <div className={`arvr-submit-message ${submitMessage.includes('successful') ? 'success' : 'error'}`}>
+          {submitMessage}
+        </div>
+      )}
+      <form className="arvr-join-form" onSubmit={handleSubmit}>
+        {/* Hidden field for formName */}
+        <input
+          type="hidden"
+          name="formName"
+          value={formData.formName}
+        />
+        
+        {/* Rest of your form fields... */}
+        <div className="arvr-form-group">                  
+          <input
+            type="text"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleInputChange}
+            placeholder="Enter your first name"
+            className={`arvr-join-input ${formErrors.firstName ? 'error' : ''}`}
+            required
+          />
+          {formErrors.firstName && <span className="arvr-error-message">{formErrors.firstName}</span>}
+        </div>
+        
+        {/* Add all other form fields here... */}
+        
+        <button 
+          type="submit" 
+          className="arvr-form-submit-btn"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? 'Submitting...' : 'Start Learning'}
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default ArvrJoinFormWithUrl;

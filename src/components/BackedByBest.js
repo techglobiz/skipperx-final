@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import './BackedByBest.css'; // Assuming you have a CSS file for styling
 import akhil from '/public/assets/akhil.png';
 import akhilc from '/public/assets/akhilc.png';
@@ -10,6 +10,7 @@ import isroLogo from '/public/assets/isro-logo.png';
 import ramya from '/public/assets/ramyaa.png';
 import zah from '/public/assets/zah.png';
 import zahc from '/public/assets/zahc.png';
+import LaunchSection from "./LaunchSection";
 
 
 const bestTestimonials = [
@@ -88,33 +89,23 @@ const BackedByBest = () => {
     }
   }, [transition]);
 
-  const startAutoSlide = () => {
+  const startAutoSlide = useCallback(() => {
     stopAutoSlide();
     intervalRef.current = setInterval(() => {
       if (!isHovered.current) {
         next();
       }
     }, 2500);
-  };
+  }, []);
 
   const stopAutoSlide = () => {
     if (intervalRef.current) clearInterval(intervalRef.current);
   };
 
-  const pauseAutoSlide = () => {
-    isHovered.current = true;
-    stopAutoSlide();
-  };
-
-  const resumeAutoSlide = () => {
-    isHovered.current = false;
-    startAutoSlide();
-  };
-
   useEffect(() => {
     startAutoSlide();
     return stopAutoSlide;
-  }, []);
+  }, [startAutoSlide]);
 
   return (
     <div className="best-container">
@@ -124,6 +115,9 @@ const BackedByBest = () => {
         <hr className="right" />
       </div>
       <p className="best-subheading">Real journeys, Real breakthroughs, Real impact</p>
+
+
+      <LaunchSection /> 
 
       <div
         className="best-carousel-wrapper"
@@ -173,6 +167,7 @@ const BackedByBest = () => {
         <button className="best-arrow right" onClick={next}>&#10095;</button>
       </div>
     </div>
+
   );
 };
 
