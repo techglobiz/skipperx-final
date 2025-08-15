@@ -241,7 +241,7 @@
 
   .testimonial-right .person-img {
     width: 150px !important;
-    height: auto;
+    height: 200px !important;
     margin: 0;
     border-radius: 8px;
   }
