@@ -577,8 +577,17 @@ background: linear-gradient(180deg, #1c1c1c 0%, #2b1b1b 100%);
 }
 
 .stack-header{
-/* background: linear-gradient(to bottom, #1c1c1c, #FB614B); */
-    background: linear-gradient(to bottom, rgba(28, 28, 28, 0.8), /* #1c1c1c with 80% opacity */ rgba(251, 97, 75, 0.3) /* #FB614B with 80% opacity */);
+    background: linear-gradient(to bottom, rgba(28, 28, 28, 0.8),  rgba(251, 97, 75, 0.3));
+}
+
+
+.drone-info-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    padding: 50px 100px 30px 120px;
+    flex-wrap: wrap;
+    background: linear-gradient(to bottom, rgba(28, 28, 28, 0.8),  rgba(251, 97, 75, 0.3));
 }
 
 .stack-card-container {  
