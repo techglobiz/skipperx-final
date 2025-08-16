@@ -28,7 +28,7 @@ import nehasawal from "/public/assets/stack/neha.png";
 import ramya_shrivastav from "/public/assets/stack/ramya_shrivastav.png";
 import reddy from "/public/assets/stack/reddy.png";
 import zaheen from "/public/assets/stack/zaheen.png";
-import statckimg from "/public/assets/statckup.png";
+import statckimg from "/public/assets/statckbnr.png";
 import bcg from "/public/assets/stack/bcg.png";
 
 import css from "/public/assets/stacklogo/css.png";
