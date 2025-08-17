@@ -423,3 +423,132 @@
     gap: 14px;
   }
 }
+
+/* Sticky Start Learning Button */
+.sticky-button-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 0;
+}
+
+.sticky-start-learning-btn {
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  color: white;
+  border: none;
+  border-radius: 0;
+  padding: 16px 24px;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 -4px 15px rgba(255, 107, 53, 0.3);
+  transition: all 0.3s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.sticky-start-learning-btn:hover {
+  background: linear-gradient(135deg, #ff5722, #f57c00);
+  box-shadow: 0 -6px 20px rgba(255, 107, 53, 0.4);
+}
+
+.sticky-start-learning-btn:active {
+  box-shadow: 0 -3px 10px rgba(255, 107, 53, 0.3);
+}
+
+/* Modal Styles */
+.form-modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.form-modal-content {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+.form-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+}
+
+.close-form-btn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.close-form-btn:hover {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sticky-start-learning-btn {
+    padding: 14px 20px;
+    font-size: 16px;
+  }
+  
+  .form-modal-content {
+    margin: 20px;
+    width: calc(100% - 40px);
+  }
+  
+  .form-title {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sticky-start-learning-btn {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+  
+  .form-modal-content {
+    margin: 10px;
+    width: calc(100% - 20px);
+  }
+}

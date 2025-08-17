@@ -1,10 +1,19 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { useState } from 'react';
+import ArvrJoinForm from './Sidebar';
 import './Footer.css';
 import logo from '/public/assets/skipper-logo.png';
 
 const Footer = () => {
+  const [showForm, setShowForm] = useState(false);
+
+  const handleStartLearningClick = () => {
+    setShowForm(true);
+  };
+
   return (
     <footer className="footer">
       <div className="footer-social">
@@ -172,6 +181,39 @@ const Footer = () => {
       </div>
       
       <p className="footer-rights">©2025 . All rights reserved.</p>
+      
+      {/* Sticky Start Learning Button */}
+      <div className="sticky-button-container">
+        <button className="sticky-start-learning-btn" onClick={handleStartLearningClick}>
+          Start Learning
+        </button>
+      </div>
+
+      {/* Modal Form */}
+      {showForm && (
+        <div 
+          className="form-modal-wrapper" 
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setShowForm(false);
+            }
+          }}
+        >
+          <div className="form-modal-content">
+            <div className="form-header">
+              <h3 className="form-title">Start Your Learning Journey</h3>
+              <button 
+                type="button" 
+                className="close-form-btn"
+                onClick={() => setShowForm(false)}
+              >
+                ×
+              </button>
+            </div>
+            <ArvrJoinForm formName="General Learning Registration" />
+          </div>
+        </div>
+      )}
     </footer>
   );
 };
