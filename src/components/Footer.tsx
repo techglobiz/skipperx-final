@@ -183,11 +183,11 @@ const Footer = () => {
       <p className="footer-rights">©2025 . All rights reserved.</p>
       
       {/* Sticky Start Learning Button */}
-      <div className="sticky-button-container">
+      {/* <div className="sticky-button-container">
         <button className="sticky-start-learning-btn" onClick={handleStartLearningClick}>
           Start Learning
         </button>
-      </div>
+      </div> */}
 
       {/* Modal Form */}
       {showForm && (
