@@ -2657,3 +2657,27 @@
         flex-direction: column !important;
     }
 }
+
+/* Sticky pricing card styles */
+.stkform.is-sticky-active {
+  position: fixed !important;
+  top: 80px !important;
+  right: 55px !important;
+  z-index: 1000 !important;
+  transform: translateX(0) !important;
+  width: 400px !important;
+  max-width: 400px !important;
+}
+
+/* Mobile disable sticky */
+@media (max-width: 768px) {
+  .stkform.is-sticky-active {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    z-index: auto !important;
+    transform: none !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+}

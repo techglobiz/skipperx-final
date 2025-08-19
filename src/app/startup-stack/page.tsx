@@ -1,7 +1,7 @@
 "use client";
 import ArvrJoinForm from "@/components/Sidebar";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./stack.css"; // Assuming you have a CSS file for styles
 
 import brochureImage from "/public/assets/drone-brochure.png";
@@ -52,6 +52,82 @@ const partners2 = [learn, seaborn, python, numpy, jupyter, numpy];
 export default function StartupStackPage() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [showForm, setShowForm] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
+  const [stickyStyle, setStickyStyle] = useState<React.CSSProperties>({});
+  
+  const pricingCardRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Check if device is mobile (screen width less than 769px)
+    const isMobile = () => window.innerWidth < 769;
+    
+    const handleScroll = () => {
+      // Skip sticky behavior on mobile devices
+      if (isMobile() || !pricingCardRef.current || !containerRef.current) return;
+
+      const container = containerRef.current;
+      const card = pricingCardRef.current;
+      const containerRect = container.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const stickyOffset = 20;
+
+      // Get original card width before any transforms
+      const cardWidth = isSticky ? card.offsetWidth : card.getBoundingClientRect().width;
+
+      // Check if container is in viewport and should be sticky
+      if (containerRect.top <= stickyOffset && containerRect.bottom > windowHeight / 2) {
+        if (!isSticky) {
+          setIsSticky(true);
+          setStickyStyle({
+            position: 'fixed',
+            top: `${stickyOffset}px`,
+            right: '100px',
+            width: `${cardWidth}px`,
+            zIndex: 1000,
+            boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
+            maxWidth: '500px'
+          });
+        }
+      } else {
+        if (isSticky) {
+          setIsSticky(false);
+          setStickyStyle({});
+        }
+      }
+    };
+
+    const handleResize = () => {
+      // Reset sticky state on resize, especially when switching to mobile
+      if (isMobile() && isSticky) {
+        setIsSticky(false);
+        setStickyStyle({});
+      }
+    };
+
+    // Throttle scroll events for better performance
+    let ticking = false;
+    const throttledHandleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', throttledHandleScroll, { passive: true });
+    window.addEventListener('resize', handleResize, { passive: true });
+    
+    // Initial check after component mounts
+    setTimeout(handleScroll, 100);
+    
+    return () => {
+      window.removeEventListener('scroll', throttledHandleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isSticky]);
 
   const toggleAccordion = (index: number | null) => {
     setActiveIndex(index === activeIndex ? null : index);
@@ -135,7 +211,7 @@ export default function StartupStackPage() {
 
 
 
-  <div className="drone-info-section">  
+  <div className="drone-info-section" ref={containerRef}>  
   <div className="drone-info-left">   
     <div>
       <h2 className="drone-info-heading">
@@ -260,7 +336,11 @@ export default function StartupStackPage() {
   {/* Right Section */}
   <div className="drone-info-right">
     {!showForm && (
-      <div className="drone-pricing-card">
+      <div 
+        ref={pricingCardRef}
+        className={`drone-pricing-card stkform ${isSticky ? 'is-sticky-active' : ''}`}
+        style={stickyStyle}
+      >
         <h2>Master Startup stack</h2>
         <ul className="drone-features-list">
           <li><span className="tickmark">&#10004;</span> Innovation for professional growth</li>
@@ -291,90 +371,62 @@ export default function StartupStackPage() {
     )}
 
     {showForm && (
-      <div className="startup-form-wrapper visible" style={{
-        position: 'fixed',
-        top: '0',
-        left: '0',
-        width: '100%',
-        height: '100%',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        zIndex: '9999'
-      }}>
-        <div className="startup-form" style={{
-          backgroundColor: 'white',
-          borderRadius: '12px',
-          padding: '20px',
-          maxWidth: '500px',
-          width: '90%',
-          maxHeight: '90vh',
-          overflowY: 'auto',
-          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
-          position: 'relative'
-        }}>
-          <div className="startup-form-card">
-            <div className="form-header" style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: '20px',
-              borderBottom: '1px solid #eee',
-              paddingBottom: '15px'
+      <div className="drone-pricing-card">
+        <div className="startup-form-card">
+          <div className="form-header" style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: '20px',
+            borderBottom: '1px solid #eee',
+            paddingBottom: '15px'
+          }}>
+            <h3 className="startup-form-title" style={{
+              margin: '0',
+              fontSize: '24px',
+              fontWeight: 'bold',
+              color: '#333'
             }}>
-              <h3 className="startup-form-title" style={{
-                margin: '0',
-                fontSize: '24px',
-                fontWeight: 'bold',
-                color: '#333'
-              }}>
-                Master Startup Stack Program
-              </h3>
-              <button 
-                type="button" 
-                className="close-form-btn"
-                onClick={() => setShowForm(false)}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  fontSize: '28px',
-                  cursor: 'pointer',
-                  color: '#666',
-                  padding: '0',
-                  width: '30px',
-                  height: '30px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: '50%',
-                  transition: 'all 0.2s ease'
-                }}
-                onMouseOver={(e) => {
-                  const target = e.target as HTMLButtonElement;
-                  target.style.backgroundColor = '#f5f5f5';
-                  target.style.color = '#333';
-                }}
-                onMouseOut={(e) => {
-                  const target = e.target as HTMLButtonElement;
-                  target.style.backgroundColor = 'transparent';
-                  target.style.color = '#666';
-                }}
-              >
-                ×
-              </button>
-            </div>
-
-            <ArvrJoinForm />
+              Master Startup Stack Program
+            </h3>
+            <button 
+              type="button" 
+              className="close-form-btn"
+              onClick={() => setShowForm(false)}
+              style={{
+                background: 'none',
+                border: 'none',
+                fontSize: '28px',
+                cursor: 'pointer',
+                color: '#666',
+                padding: '0',
+                width: '30px',
+                height: '30px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '50%',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseOver={(e) => {
+                const target = e.target as HTMLButtonElement;
+                target.style.backgroundColor = '#f5f5f5';
+                target.style.color = '#333';
+              }}
+              onMouseOut={(e) => {
+                const target = e.target as HTMLButtonElement;
+                target.style.backgroundColor = 'transparent';
+                target.style.color = '#666';
+              }}
+            >
+              ×
+            </button>
           </div>
+
+          <ArvrJoinForm />
         </div>
       </div>
     )}
-
-    {/* <div className="arvr-pricingform-card">
-      <h2>Master AR/VR Engineering Program</h2>
-      <ArvrJoinForm />
-    </div> */}
   </div>
 </div>
 

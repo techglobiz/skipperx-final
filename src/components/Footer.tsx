@@ -88,7 +88,7 @@ const Footer = () => {
 
             <p>Learn drone engineering, AI, robotics, AR/VR, YouTube, stock trading, and more — all inside virtual classrooms. Explore curated learning packs like Tech Core, Startup Stack, and Creative Hub to grow your career or launch your next big move.</p>  
 
-            <p><strong>1st floor, 19th Main Rd, 1st Sector, HSR Layout, Bengaluru, Karnataka 560102</strong></p>
+            <p><strong>Hustlehub 1906, 19th Main Rd, 1st Sector, HSR Layout, Bengaluru, Karnataka 560102</strong></p>
                 
             <p><a href="#">support@skipperx.io</a></p>
             <p><a href="#">+91 9888888888</a></p>

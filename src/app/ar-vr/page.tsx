@@ -1,6 +1,6 @@
 'use client';
 import ArvrJoinForm from '@/components/Sidebar';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 import './page.css';
 import certificateDisplay from "/public/assets/dcerti.png";
 import brochureImage from "/public/assets/drone-brochure.png";
@@ -36,6 +36,12 @@ const modules = [
 
 const ARVRPage = () => {
   // const router = useRouter(); // Removed unused variable
+  
+  // Sticky logic
+  const [isSticky, setIsSticky] = useState(false);
+  const pricingCardRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const scrollItems = [
     "Game Development",
     "3D Modeling",
@@ -135,6 +141,49 @@ const ARVRPage = () => {
       console.log('showForm state changed:', showForm);
     }, [showForm]);
 
+    // Sticky logic
+    useEffect(() => {
+      const checkSticky = () => {
+        if (!pricingCardRef.current || !containerRef.current) return;
+        
+        // Check if it's mobile (less than 769px)
+        if (window.innerWidth < 769) {
+          setIsSticky(false);
+          return;
+        }
+
+        const rect = pricingCardRef.current.getBoundingClientRect();
+        const container = containerRef.current.getBoundingClientRect();
+        
+        // Make sticky when pricing card would go out of view and container is still visible
+        if (rect.top <= 80 && container.bottom > window.innerHeight) {
+          setIsSticky(true);
+        } else {
+          setIsSticky(false);
+        }
+      };
+
+      const handleScroll = () => {
+        requestAnimationFrame(checkSticky);
+      };
+
+      const handleResize = () => {
+        // Re-check sticky state on resize
+        checkSticky();
+      };
+
+      window.addEventListener('scroll', handleScroll);
+      window.addEventListener('resize', handleResize);
+      
+      // Initial check
+      checkSticky();
+
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
+
   return (
     <>
       {/* Debug: Show current form state */}
@@ -211,7 +260,7 @@ const ARVRPage = () => {
         
 
         
-        <div className="arvr-info-section">
+        <div className="arvr-info-section" ref={containerRef}>
           <div className="arvr-info-left mt-3">           
 
             <h2 className="arvr-info-heading">
@@ -422,38 +471,97 @@ const ARVRPage = () => {
           </div>
 
           <div className="arvr-info-right">
-            <div className="arvr-pricing-card">
-              <h2>Master AR/VR Engineering Program</h2>
+            {!showForm && (
+              <div className={`arvr-pricing-card stkform ${isSticky ? 'is-sticky-active' : ''}`} ref={pricingCardRef}>
+                <h2>Master AR/VR Engineering Program</h2>
 
-              <ul className="arvr-features-list">
-                <li>✅ Hands-on AR/VR development</li>
-                <li>✅ Industry certification</li>
-                <li>✅ Unity & 3D modeling</li>
-                <li>✅ Real-world projects</li>
-              </ul>
-              <div className="price">Price</div>
-              <div className="arvr-price-section">
-                <div className="arvr-original-price">₹29,999</div>
-                <div className="arvr-current-price">₹24,000</div>
-              </div>
-
-              <div className="trust-footer-arvr">
-                <div className="avatarsarvr">
-                  <Image src={harish} alt="avatar" />
-                  <Image src={hari} alt="avatar" />
-                  <Image src={sakshi} alt="avatar" />
-                  <Image src={sai} alt="avatar" />
-                  <span className='top'>3500+ members has already completed this Program</span>
+                <ul className="arvr-features-list">
+                  <li>✅ Hands-on AR/VR development</li>
+                  <li>✅ Industry certification</li>
+                  <li>✅ Unity & 3D modeling</li>
+                  <li>✅ Real-world projects</li>
+                </ul>
+                <div className="price">Price</div>
+                <div className="arvr-price-section">
+                  <div className="arvr-original-price">₹29,999</div>
+                  <div className="arvr-current-price">₹24,000</div>
                 </div>
+
+                <div className="trust-footer-arvr">
+                  <div className="avatarsarvr">
+                    <Image src={harish} alt="avatar" />
+                    <Image src={hari} alt="avatar" />
+                    <Image src={sakshi} alt="avatar" />
+                    <Image src={sai} alt="avatar" />
+                    <span className='top'>3500+ members has already completed this Program</span>
+                  </div>
+                </div>
+
+                <button className="arvr-pricing-btn" onClick={handlePricingClick}>Start Learning</button>
               </div>
+            )}
 
-              <button className="arvr-pricing-btn" onClick={handlePricingClick}>Start Learning</button>
-            </div>
-            {/* <div className="arvr-pricingform-card">
-              <h2>Master AR/VR Engineering Program</h2>              
-              <ArvrJoinForm />              
-            </div> */}
+            {showForm && (
+              <div className="arvr-pricing-card">
+                <div
+                  className="form-header"
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginBottom: "20px",
+                    borderBottom: "1px solid #eee",
+                    paddingBottom: "15px",
+                  }}
+                >
+                  <h3
+                    className="arvr-form-title"
+                    style={{
+                      margin: "0",
+                      fontSize: "20px",
+                      fontWeight: "bold",
+                      color: "#333",
+                    }}
+                  >
+                    Master AR/VR Engineering Program
+                  </h3>
+                  <button
+                    type="button"
+                    className="close-form-btn"
+                    onClick={() => setShowForm(false)}
+                    style={{
+                      background: "none",
+                      border: "none",
+                      fontSize: "24px",
+                      cursor: "pointer",
+                      color: "#666",
+                      padding: "0",
+                      width: "30px",
+                      height: "30px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderRadius: "50%",
+                      transition: "all 0.2s ease",
+                    }}
+                    onMouseOver={(e) => {
+                      const target = e.target as HTMLButtonElement;
+                      target.style.backgroundColor = "#f5f5f5";
+                      target.style.color = "#333";
+                    }}
+                    onMouseOut={(e) => {
+                      const target = e.target as HTMLButtonElement;
+                      target.style.backgroundColor = "transparent";
+                      target.style.color = "#666";
+                    }}
+                  >
+                    ×
+                  </button>
+                </div>
 
+                <ArvrJoinForm />
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -649,104 +757,6 @@ const ARVRPage = () => {
                   ))}
                 </div>
               </div>
-      
-          
-      {/* Modal Form - Using ArvrJoinForm component */}
-      {showForm && (
-        <div 
-          className="arvr-form-wrapper" 
-          style={{
-            position: 'fixed',
-            top: '0',
-            left: '0',
-            width: '100vw',
-            height: '100vh',
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            zIndex: '10000',
-            visibility: 'visible',
-            opacity: '1'
-          }}
-          onClick={(e) => {
-            // Close modal when clicking the backdrop
-            if (e.target === e.currentTarget) {
-              console.log('Closing form by clicking backdrop');
-              setShowForm(false);
-            }
-          }}
-        >
-          <div className="arvr-form" style={{
-            backgroundColor: 'white',
-            borderRadius: '12px',
-            padding: '20px',
-            maxWidth: '500px',
-            width: '90%',
-            maxHeight: '90vh',
-            overflowY: 'auto',
-            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
-            position: 'relative'
-          }}>
-            <div className="arvr-form-card">
-              <div className="form-header" style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginBottom: '20px',
-                borderBottom: '1px solid #eee',
-                paddingBottom: '15px'
-              }}>
-                <h3 className="arvr-form-title" style={{
-                  margin: '0',
-                  fontSize: '24px',
-                  fontWeight: 'bold',
-                  color: '#333'
-                }}>
-                  Master AR/VR Engineering Program
-                </h3>
-                <button 
-                  type="button" 
-                  className="close-form-btn"
-                  onClick={() => {
-                    console.log('Closing form via close button');
-                    setShowForm(false);
-                  }}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    fontSize: '28px',
-                    cursor: 'pointer',
-                    color: '#666',
-                    padding: '0',
-                    width: '30px',
-                    height: '30px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderRadius: '50%',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onMouseOver={(e) => {
-                    const target = e.target as HTMLButtonElement;
-                    target.style.backgroundColor = '#f5f5f5';
-                    target.style.color = '#333';
-                  }}
-                  onMouseOut={(e) => {
-                    const target = e.target as HTMLButtonElement;
-                    target.style.backgroundColor = 'transparent';
-                    target.style.color = '#666';
-                  }}
-                >
-                  ×
-                </button>
-              </div>
-
-              <ArvrJoinForm />
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* <Footer /> */}
     </>
