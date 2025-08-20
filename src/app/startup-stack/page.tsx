@@ -52,82 +52,109 @@ const partners2 = [learn, seaborn, python, numpy, jupyter, numpy];
 export default function StartupStackPage() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [showForm, setShowForm] = useState(false);
+
+
   const [isSticky, setIsSticky] = useState(false);
-  const [stickyStyle, setStickyStyle] = useState<React.CSSProperties>({});
-  
   const pricingCardRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
+
+  // Improved sticky logic with Intersection Observer as fallback
   useEffect(() => {
-    // Check if device is mobile (screen width less than 769px)
-    const isMobile = () => window.innerWidth < 769;
-    
-    const handleScroll = () => {
-      // Skip sticky behavior on mobile devices
-      if (isMobile() || !pricingCardRef.current || !containerRef.current) return;
-
-      const container = containerRef.current;
-      const card = pricingCardRef.current;
-      const containerRect = container.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const stickyOffset = 20;
-
-      // Get original card width before any transforms
-      const cardWidth = isSticky ? card.offsetWidth : card.getBoundingClientRect().width;
-
-      // Check if container is in viewport and should be sticky
-      if (containerRect.top <= stickyOffset && containerRect.bottom > windowHeight / 2) {
-        if (!isSticky) {
-          setIsSticky(true);
-          setStickyStyle({
-            position: 'fixed',
-            top: `${stickyOffset}px`,
-            right: '100px',
-            width: `${cardWidth}px`,
-            zIndex: 1000,
-            boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
-            maxWidth: '500px'
-          });
-        }
-      } else {
-        if (isSticky) {
-          setIsSticky(false);
-          setStickyStyle({});
-        }
-      }
-    };
-
-    const handleResize = () => {
-      // Reset sticky state on resize, especially when switching to mobile
-      if (isMobile() && isSticky) {
-        setIsSticky(false);
-        setStickyStyle({});
-      }
-    };
-
-    // Throttle scroll events for better performance
     let ticking = false;
-    const throttledHandleScroll = () => {
+    let originalTop = 0;
+    let observer: IntersectionObserver | null = null;
+    
+    const updateSticky = () => {
+      if (!pricingCardRef.current || !containerRef.current) {
+        ticking = false;
+        return;
+      }
+
+      // Check if it's mobile (less than 769px)
+      if (window.innerWidth < 769) {
+        setIsSticky(false);
+        ticking = false;
+        return;
+      }
+
+      const rect = pricingCardRef.current.getBoundingClientRect();
+      const containerRect = containerRef.current.getBoundingClientRect();
+      
+      // Store original position if not already sticky
+      if (!isSticky && originalTop === 0) {
+        originalTop = rect.top + window.scrollY;
+      }
+      
+      // Calculate when to stick and unstick
+      // Allow sticky box to scroll down more (2-3 scroll lengths) before stopping
+      const stickyOffset = window.innerHeight * 0.7; // Allow sticky to go down more
+      const shouldStick = window.scrollY + 100 >= originalTop && 
+                         containerRect.bottom > stickyOffset;
+      
+      setIsSticky(shouldStick);
+      ticking = false;
+    };
+
+    const handleScroll = () => {
       if (!ticking) {
-        requestAnimationFrame(() => {
-          handleScroll();
-          ticking = false;
-        });
+        requestAnimationFrame(updateSticky);
         ticking = true;
       }
     };
 
-    window.addEventListener('scroll', throttledHandleScroll, { passive: true });
-    window.addEventListener('resize', handleResize, { passive: true });
+    const handleResize = () => {
+      originalTop = 0; // Reset original position
+      setIsSticky(false);
+      setTimeout(updateSticky, 100);
+    };
+
+    // Intersection Observer as additional fallback
+    const setupIntersectionObserver = () => {
+      if (containerRef.current && 'IntersectionObserver' in window) {
+        observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting && window.innerWidth >= 769) {
+                // Container is out of view, unstick only if scrolled past the top
+                if (window.scrollY < originalTop - 200) { // Add buffer for better UX
+                  setIsSticky(false);
+                }
+              }
+            });
+          },
+          {
+            threshold: 0,
+            rootMargin: '0px 0px -200px 0px' // Increase margin for more scrolling
+          }
+        );
+        observer.observe(containerRef.current);
+      }
+    };
+
+    // Add event listeners
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleResize);
     
-    // Initial check after component mounts
-    setTimeout(handleScroll, 100);
-    
+    // Initial setup
+    setTimeout(() => {
+      if (pricingCardRef.current) {
+        const rect = pricingCardRef.current.getBoundingClientRect();
+        originalTop = rect.top + window.scrollY;
+      }
+      updateSticky();
+      setupIntersectionObserver();
+    }, 100);
+
     return () => {
-      window.removeEventListener('scroll', throttledHandleScroll);
+      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
+      if (observer) {
+        observer.disconnect();
+      }
     };
   }, [isSticky]);
+  
 
   const toggleAccordion = (index: number | null) => {
     setActiveIndex(index === activeIndex ? null : index);
@@ -335,99 +362,120 @@ export default function StartupStackPage() {
 
   {/* Right Section */}
   <div className="drone-info-right">
-    {!showForm && (
-      <div 
-        ref={pricingCardRef}
-        className={`drone-pricing-card stkform ${isSticky ? 'is-sticky-active' : ''}`}
-        style={stickyStyle}
-      >
-        <h2>Master Startup stack</h2>
-        <ul className="drone-features-list">
-          <li><span className="tickmark">&#10004;</span> Innovation for professional growth</li>
-          <li><span className="tickmark">&#10004;</span> Certification included</li>
-          <li><span className="tickmark">&#10004;</span> Hands on learning</li>
-        </ul>
+            {!showForm && (
+              <>
+                {isSticky && <div className="sticky-placeholder"></div>}
+                <div className={`drone-pricing-card stkform ${isSticky ? 'is-sticky' : ''}`} ref={pricingCardRef}>
+                <h2>Master Startup stack </h2>
 
-        <div className="price">Price</div>
-        <div className="drone-price-section">
-          <div className="drone-original-price">₹24,999</div>
-          <div className="drone-current-price">₹20,000</div>
-        </div>
+                <ul className="drone-features-list">
+                  <li>
+                    <span className="tickmark">&#10004;</span> Innovation for professional growth
+                  </li>
+                  <li>
+                    <span className="tickmark">&#10004;</span> Certification
+                    included
+                  </li>
+                  <li>
+                    <span className="tickmark">&#10004;</span> Hands on learning
+                  </li>
+                  {/* <li>
+                    <span className="tickmark">&#10004;</span> Hands on learning
+                  </li> */}
+                </ul>
+                <div className="price">Price</div>
+                <div className="drone-price-section">
+                  <div className="drone-original-price">₹24,999</div>
+                  <div className="drone-current-price">₹20,000</div>
+                </div>
 
-        <div className="trust-footer-drone">
-          <div className="avatarsdrone">
-            <Image src={harish} alt="avatar" />
-            <Image src={hari} alt="avatar" />
-            <Image src={sakshi} alt="avatar" />
-            <Image src={sai} alt="avatar" />
-            <span className="top">7000+ members have already completed this Program</span>
+                <div className="trust-footer-drone">
+                  <div className="avatarsdrone">
+                    <Image src={harish} alt="avatar" />
+                    <Image src={hari} alt="avatar" />
+                    <Image src={sakshi} alt="avatar" />
+                    <Image src={sai} alt="avatar" />
+                    <span className="top">
+                      4000+ members has already completed this Program
+                    </span>
+                  </div>
+                </div>
+
+                <button
+                  className="drone-pricing-btn"
+                  onClick={handlePricingClick}
+                >
+                  Start Learning
+                </button>
+              </div>
+              </>
+            )}
+
+            {showForm && (
+              <>
+                {isSticky && <div className="sticky-placeholder"></div>}
+                <div className={`drone-pricing-card stkform ${isSticky ? 'is-sticky' : ''}`}>
+                  <div
+                    className="form-header"
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      marginBottom: "20px",
+                      borderBottom: "1px solid #eee",
+                      paddingBottom: "15px",
+                    }}
+                  >
+                  <h3
+                    className="drone-form-title"
+                    style={{
+                      margin: "0",
+                      fontSize: "20px",
+                      fontWeight: "bold",
+                      color: "#333",
+                    }}
+                  >
+                    Master Startup stack
+                  </h3>
+                  <button
+                    type="button"
+                    className="close-form-btn"
+                    onClick={() => setShowForm(false)}
+                    style={{
+                      background: "none",
+                      border: "none",
+                      fontSize: "24px",
+                      cursor: "pointer",
+                      color: "#666",
+                      padding: "0",
+                      width: "30px",
+                      height: "30px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderRadius: "50%",
+                      transition: "all 0.2s ease",
+                    }}
+                    onMouseOver={(e) => {
+                      const target = e.target as HTMLButtonElement;
+                      target.style.backgroundColor = "#f5f5f5";
+                      target.style.color = "#333";
+                    }}
+                    onMouseOut={(e) => {
+                      const target = e.target as HTMLButtonElement;
+                      target.style.backgroundColor = "transparent";
+                      target.style.color = "#666";
+                    }}
+                  >
+                    ×
+                  </button>
+                </div>
+
+                <ArvrJoinForm />
+              </div>
+              </>
+            )}
           </div>
-        </div>
-
-        <button className="drone-pricing-btn" onClick={handlePricingClick}>
-          Start Learning
-        </button>
-      </div>
-    )}
-
-    {showForm && (
-      <div className="drone-pricing-card">
-        <div className="startup-form-card">
-          <div className="form-header" style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: '20px',
-            borderBottom: '1px solid #eee',
-            paddingBottom: '15px'
-          }}>
-            <h3 className="startup-form-title" style={{
-              margin: '0',
-              fontSize: '24px',
-              fontWeight: 'bold',
-              color: '#333'
-            }}>
-              Master Startup Stack Program
-            </h3>
-            <button 
-              type="button" 
-              className="close-form-btn"
-              onClick={() => setShowForm(false)}
-              style={{
-                background: 'none',
-                border: 'none',
-                fontSize: '28px',
-                cursor: 'pointer',
-                color: '#666',
-                padding: '0',
-                width: '30px',
-                height: '30px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderRadius: '50%',
-                transition: 'all 0.2s ease'
-              }}
-              onMouseOver={(e) => {
-                const target = e.target as HTMLButtonElement;
-                target.style.backgroundColor = '#f5f5f5';
-                target.style.color = '#333';
-              }}
-              onMouseOut={(e) => {
-                const target = e.target as HTMLButtonElement;
-                target.style.backgroundColor = 'transparent';
-                target.style.color = '#666';
-              }}
-            >
-              ×
-            </button>
-          </div>
-
-          <ArvrJoinForm />
-        </div>
-      </div>
-    )}
-  </div>
 </div>
 
 

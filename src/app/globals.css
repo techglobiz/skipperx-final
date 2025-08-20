@@ -2426,9 +2426,9 @@ body, html {
   border-radius: 14px;
   margin-left: 15px;
   padding: 5px 20px 5px 20px;
-  width: 481px;
+  width: 430px;
   border: 12px solid #aeadad;
-  height: 590px;
+  height: auto;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
   font-family: 'Poppins', sans-serif;
   color: #111;

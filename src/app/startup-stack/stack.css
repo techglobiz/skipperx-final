@@ -493,57 +493,7 @@ background: linear-gradient(180deg, #1c1c1c 0%, #2b1b1b 100%);
   margin-top: 5px;
 }
 
-.stkform{
-  background: #fff;
-  transition: all 0.3s ease;
-  border-radius: 14px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
 
-/* Desktop-only sticky styles */
-@media screen and (min-width: 769px) {
-  .stkform.is-sticky-active {
-    transform: scale(0.95);
-    border: 2px solid #FB614B;
-  }
-}
-
-/* Alternative sticky implementation using transform */
-.stkform-sticky-alt {
-  position: relative;
-}
-
-.stkform-sticky-alt::before {
-  content: '';
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 100%;
-  height: 100%;
-  background: inherit;
-  border-radius: inherit;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  z-index: 999;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-@media screen and (min-width: 769px) {
-  .stkform-sticky-alt.is-visible::before {
-    opacity: 1;
-    pointer-events: all;
-  }
-}
-
-.stkform.is-sticky {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  max-width: 400px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  border-radius: 14px;
-}
 
 /* Layout styles for drone info section */
 .drone-info-section {
@@ -575,7 +525,7 @@ background: linear-gradient(180deg, #1c1c1c 0%, #2b1b1b 100%);
   border-radius: 14px;
   margin-left: 15px;
   padding: 5px 20px 5px 20px;
-  width: 481px;
+  width: 420px;
   border: 12px solid #aeadad;
   /* height: 590px; */
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
@@ -617,7 +567,7 @@ background: linear-gradient(180deg, #1c1c1c 0%, #2b1b1b 100%);
   font-size: 20px;
   font-style: poppins;
   color: #9A9A9A;
-  margin-left: -13px;
+  margin-left: 0px;
   margin-bottom: -20px;
   font-weight: 400;
 }
@@ -705,6 +655,23 @@ background: linear-gradient(180deg, #1c1c1c 0%, #2b1b1b 100%);
   margin-bottom: 15px !important;
 }
 
+/* Sticky form styling */
+.stkform.is-sticky .startup-form-card {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.stkform.is-sticky {
+  position: fixed !important;
+  top: 80px !important;
+  /* right: calc((100vw - 1400px) / 2 + 55px) !important; */
+  width: 430px !important;
+  max-width: 430px !important;
+  z-index: 1000 !important;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4) !important;
+  animation: stickFadeIn 0.2s ease-out;
+}
+
 /* Responsive adjustments for sticky card */
 @media screen and (max-width: 768px) {
   .drone-info-section {
@@ -738,10 +705,20 @@ background: linear-gradient(180deg, #1c1c1c 0%, #2b1b1b 100%);
     box-shadow: 0 0 10px rgba(0,0,0,0.3) !important;
   }
   
-  .stkform.is-sticky-active {
-    transform: none !important;
-    border: 12px solid #aeadad !important;
-    position: static !important;
+  .stkform.is-sticky {
+  position: fixed !important;
+  top: 80px !important;
+  /* right: calc((100vw - 1400px) / 2 + 55px) !important; */
+  width: 430px !important;
+  max-width: 481px !important;
+  z-index: 1000 !important;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4) !important;
+  animation: stickFadeIn 0.2s ease-out;
+}
+
+  
+  .sticky-placeholder {
+    display: none;
   }
 }
 
@@ -1286,4 +1263,280 @@ ul.arvr-features-list {
     line-height: 37px;
     list-style: disc;
     font-size: 18px;
+}
+
+
+
+/* Sticky pricing card styles - Alternative Solution */
+.stkform {
+  position: relative;
+  z-index: 1000;
+  transition: all 0.2s ease-out;
+}
+
+.stkform.is-sticky {
+  position: fixed !important;
+  top: 80px !important;
+  /* right: calc((100vw - 1400px) / 2 + 55px) !important; */
+  width: 420px !important;
+  max-width: 420px !important;
+  z-index: 1000 !important;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4) !important;
+  animation: stickFadeIn 0.2s ease-out;
+  /* Allow the sticky element to scroll more by adjusting max-height */
+  max-height: calc(100vh - 160px) !important;
+  overflow-y: auto !important;
+}
+
+@keyframes stickFadeIn {
+  from {
+    opacity: 0.8;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fallback for smaller screens */
+@media (max-width: 1400px) {
+  .stkform.is-sticky {
+    right: 55px !important;
+  }
+}
+
+/* Placeholder to prevent layout jump */
+.sticky-placeholder {
+  width: 408px;
+  height: 590px;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Mobile disable sticky */
+@media (max-width: 768px) {
+  .stkform.is-sticky {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    max-width: 400px !important;
+    margin: 0 auto !important;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3) !important;
+    animation: none !important;
+  }
+  
+  .sticky-placeholder {
+    display: none;
+  }
+}
+
+/* Additional content below sticky box styles */
+.additional-content-below-sticky {
+  margin-top: 30px;
+  padding: 20px 0;
+}
+
+.success-stories-section {
+  margin-bottom: 40px;
+}
+
+.success-stories-section h3 {
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.success-story-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-left: 4px solid #667eea;
+}
+
+.success-story-card p {
+  font-style: italic;
+  color: #555;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.story-author {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.story-author strong {
+  color: #333;
+  font-size: 14px;
+}
+
+.story-author span {
+  color: #666;
+  font-size: 12px;
+}
+
+.program-highlights {
+  margin-bottom: 40px;
+}
+
+.program-highlights h3 {
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.highlight-list {
+  list-style: none;
+  padding: 0;
+}
+
+.highlight-list li {
+  background: #f8f9fa;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  border-left: 3px solid #667eea;
+  position: relative;
+}
+
+.highlight-list li::before {
+  content: "✓";
+  color: #667eea;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.career-outcomes {
+  margin-bottom: 40px;
+}
+
+.career-outcomes h3 {
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.outcome-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.outcome-stat {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.next-steps {
+  margin-bottom: 30px;
+}
+
+.next-steps h3 {
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.steps-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+}
+
+.step-number {
+  background: #667eea;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.step-content h4 {
+  color: #333;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.step-content p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Responsive styles for additional content */
+@media (max-width: 768px) {
+  .additional-content-below-sticky {
+    margin-top: 20px;
+    padding: 10px;
+  }
+  
+  .success-stories-section h3,
+  .program-highlights h3,
+  .career-outcomes h3,
+  .next-steps h3 {
+    font-size: 20px;
+  }
+  
+  .outcome-stats {
+    gap: 10px;
+  }
+  
+  .step {
+    padding: 15px;
+  }
+  
+  .step-number {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
+  
+  .step-content h4 {
+    font-size: 16px;
+  }
 }

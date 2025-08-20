@@ -1,7 +1,7 @@
 'use client';
 import ArvrJoinForm from '@/components/Sidebar';
 import Image from "next/image";
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import './core.css'; // Assuming you have a CSS file for styles
 import brochureImage from "/public/assets/drone-brochure.png";
 import faqarrow from "/public/assets/faqarrow.png";
@@ -68,48 +68,101 @@ export default function CoretechPage() {
     setShowForm(true);
   };
   
-  // Sticky logic
+  // Improved sticky logic with Intersection Observer as fallback
   useEffect(() => {
-    const checkSticky = () => {
-      if (!pricingCardRef.current || !containerRef.current) return;
-      
+    let ticking = false;
+    let originalTop = 0;
+    let observer: IntersectionObserver | null = null;
+    
+    const updateSticky = () => {
+      if (!pricingCardRef.current || !containerRef.current) {
+        ticking = false;
+        return;
+      }
+
       // Check if it's mobile (less than 769px)
       if (window.innerWidth < 769) {
         setIsSticky(false);
+        ticking = false;
         return;
       }
 
       const rect = pricingCardRef.current.getBoundingClientRect();
-      const container = containerRef.current.getBoundingClientRect();
+      const containerRect = containerRef.current.getBoundingClientRect();
       
-      // Make sticky when pricing card would go out of view and container is still visible
-      if (rect.top <= 80 && container.bottom > window.innerHeight) {
-        setIsSticky(true);
-      } else {
-        setIsSticky(false);
+      // Store original position if not already sticky
+      if (!isSticky && originalTop === 0) {
+        originalTop = rect.top + window.scrollY;
       }
+      
+      // Calculate when to stick and unstick
+      // Allow sticky box to scroll down more (2-3 scroll lengths) before stopping
+      const stickyOffset = window.innerHeight * 0.7; // Allow sticky to go down more
+      const shouldStick = window.scrollY + 80 >= originalTop && 
+                         containerRect.bottom > stickyOffset;
+      
+      setIsSticky(shouldStick);
+      ticking = false;
     };
 
     const handleScroll = () => {
-      requestAnimationFrame(checkSticky);
+      if (!ticking) {
+        requestAnimationFrame(updateSticky);
+        ticking = true;
+      }
     };
 
     const handleResize = () => {
-      // Re-check sticky state on resize
-      checkSticky();
+      originalTop = 0; // Reset original position
+      setIsSticky(false);
+      setTimeout(updateSticky, 100);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    // Intersection Observer as additional fallback
+    const setupIntersectionObserver = () => {
+      if (containerRef.current && 'IntersectionObserver' in window) {
+        observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting && window.innerWidth >= 769) {
+                // Container is out of view, unstick only if scrolled past the top
+                if (window.scrollY < originalTop - 200) { // Add buffer for better UX
+                  setIsSticky(false);
+                }
+              }
+            });
+          },
+          {
+            threshold: 0,
+            rootMargin: '0px 0px -200px 0px' // Increase margin for more scrolling
+          }
+        );
+        observer.observe(containerRef.current);
+      }
+    };
+
+    // Add event listeners
+    window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleResize);
     
-    // Initial check
-    checkSticky();
+    // Initial setup
+    setTimeout(() => {
+      if (pricingCardRef.current) {
+        const rect = pricingCardRef.current.getBoundingClientRect();
+        originalTop = rect.top + window.scrollY;
+      }
+      updateSticky();
+      setupIntersectionObserver();
+    }, 100);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
+      if (observer) {
+        observer.disconnect();
+      }
     };
-  }, []);
+  }, [isSticky]);
 
   return (
     <>
@@ -184,7 +237,7 @@ export default function CoretechPage() {
 
 
 
-        <div className="drone-info-section" ref={containerRef}>
+        <div className="drone-info-section pt-5" ref={containerRef}>
   {/* Left Section */}
   <div className="drone-info-left">
     {/* Intro Section */}
@@ -303,7 +356,9 @@ export default function CoretechPage() {
   {/* Right Section */}
   <div className="drone-info-right">
     {!showForm && (
-      <div className={`drone-pricing-card stkform ${isSticky ? 'is-sticky-active' : ''}`} ref={pricingCardRef}>
+      <>
+        {isSticky && <div className="sticky-placeholder"></div>}
+        <div className={`drone-pricing-card stkform ${isSticky ? 'is-sticky' : ''}`} ref={pricingCardRef}>
         <h2>Master Startup stack</h2>
         <ul className="drone-features-list">
           <li><span className="tickmark">&#10004;</span> Innovation for professional growth</li>
@@ -331,21 +386,24 @@ export default function CoretechPage() {
           Start Learning
         </button>
       </div>
+      </>
     )}
 
     {showForm && (
-      <div className="drone-pricing-card">
-        <div
-          className="form-header"
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "20px",
-            borderBottom: "1px solid #eee",
-            paddingBottom: "15px",
-          }}
-        >
+      <>
+        {isSticky && <div className="sticky-placeholder"></div>}
+        <div className={`drone-pricing-card stkform ${isSticky ? 'is-sticky' : ''}`}>
+          <div
+            className="form-header"
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: "20px",
+              borderBottom: "1px solid #eee",
+              paddingBottom: "15px",
+            }}
+          >
           <h3
             className="startup-form-title"
             style={{
@@ -393,6 +451,7 @@ export default function CoretechPage() {
 
         <ArvrJoinForm />
       </div>
+      </>
     )}
   </div>
 </div>

@@ -312,7 +312,6 @@ background: linear-gradient(to right, #292535, #242b41, #2a243b);
   padding: 90px 100px 30px 120px;
   flex-wrap: wrap;
   background: linear-gradient(to bottom, rgb(44 34 68), rgb(28 28 28));
-
 }
 
 .drone-info-left {  
@@ -323,6 +322,7 @@ background: linear-gradient(to right, #292535, #242b41, #2a243b);
 .drone-info-right {
   flex: 0.8;
   min-width: 320px;
+  align-self: flex-start;
 }
 
 .drone-info-stats {
@@ -583,9 +583,6 @@ background: linear-gradient(to right, #292535, #242b41, #2a243b);
 }
 
 .drone-info-right {
-  position: -webkit-sticky; /* for Safari */
-  position: sticky;
-  bottom: 20px; /* distance from top before it sticks */
   align-self: flex-start;
   height: fit-content; 
 }
@@ -2566,26 +2563,64 @@ img.skipper-img-vishal {
     background-image: url("/assets/stacklogo/hubmob-card32.png");
 }
 
-/* Sticky pricing card styles */
-.stkform.is-sticky-active {
+/* Sticky pricing card styles - Alternative Solution */
+.stkform {
+  position: relative;
+  z-index: 1000;
+  transition: all 0.2s ease-out;
+}
+
+.stkform.is-sticky {
   position: fixed !important;
   top: 80px !important;
-  right: 55px !important;
+  /* right: calc((100vw - 1400px) / 2 + 55px) !important; */
+  width: 408px !important;
+  max-width: 408px !important;
   z-index: 1000 !important;
-  transform: translateX(0) !important;
-  width: 400px !important;
-  max-width: 400px !important;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4) !important;
+  animation: stickFadeIn 0.2s ease-out;
+}
+
+@keyframes stickFadeIn {
+  from {
+    opacity: 0.8;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fallback for smaller screens */
+@media (max-width: 1400px) {
+  .stkform.is-sticky {
+    right: 55px !important;
+  }
+}
+
+/* Placeholder to prevent layout jump */
+.sticky-placeholder {
+  width: 408px;
+  height: 590px;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 /* Mobile disable sticky */
 @media (max-width: 768px) {
-  .stkform.is-sticky-active {
+  .stkform.is-sticky {
     position: relative !important;
     top: auto !important;
     right: auto !important;
-    z-index: auto !important;
-    transform: none !important;
-    width: auto !important;
-    max-width: none !important;
+    width: 100% !important;
+    max-width: 400px !important;
+    margin: 0 auto !important;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3) !important;
+    animation: none !important;
+  }
+  
+  .sticky-placeholder {
+    display: none;
   }
 }
