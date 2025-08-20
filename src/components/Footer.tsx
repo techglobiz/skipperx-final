@@ -10,9 +10,9 @@ import logo from '/public/assets/skipper-logo.png';
 const Footer = () => {
   const [showForm, setShowForm] = useState(false);
 
-  const handleStartLearningClick = () => {
-    setShowForm(true);
-  };
+  // const handleStartLearningClick = () => {
+  //   setShowForm(true);
+  // };
 
   return (
     <footer className="footer">

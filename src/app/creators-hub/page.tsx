@@ -1,7 +1,7 @@
 "use client";
 import ArvrJoinForm from "@/components/Sidebar";
 import Image from "next/image";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./creators.css"; // Assuming you have a CSS file for styles
 import brochureImage from "/public/assets/drone-brochure.png";
 import faqarrow from "/public/assets/faqarrow.png";
